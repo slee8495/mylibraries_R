@@ -59,6 +59,25 @@ trd %>%
 ###################################################################################################################
 #################################################### Correlation ##################################################
 ###################################################################################################################
+
+# sample data
+set.seed(12)
+var1 <- runif(50, 0, 10)
+set.seed(12)
+var2 <- var1 + rnorm(50, 5, 2)
+set.seed(12)
+var3 <- var1 * (-rnorm(50, 1, 0.2))
+dat3 <- tibble::tibble(var1, var2, var3)
+# calculating your corrlation
+dat3_1 <- cor(dat3, use="complete.obs")
+# plotting your corrlation above data using ggcorrplot
+ggcorrplot::ggcorrplot(dat3_1,
+                       type="lower",
+                       title="Correlations",
+                       colors=c("blue","white","red"),
+                       outline.color="black")
+
+
 # trd data: you can find in Illinois Course 4 week 1 "tecaRegressionData.rds"
 
 ggplot(trd, aes(x = Fuel_py1, y = totalRevenue)) +
@@ -134,11 +153,6 @@ GGally::ggpairs(df,
                 lower=list(continuous = my_scatter),
                 diag=list(continuous = my_density))
 
-
-# correlation plot using ggcorrplot::ggcorrplot
-df<- cces %>% select("educ","pid7","pew_religimp")
-r<-cor(df,use="complete.obs")
-ggcorrplot(r)
 
 
 ###################################################################################################################

@@ -618,8 +618,36 @@ cat_model
 
 # Step 5: We will make a workflow for this!
 
+iris_cat_wflow <- workflows::workflow() %>% 
+  workflows::add_recipe(cat_recipe) %>% 
+  workflows::add_model(cat_model)
+
+iris_cat_wflow
 
 
+
+# Step 6: Assessing model performance with cross validation using tune
+iris_cat_wflow_fit <- parsnip::fit(iris_cat_wflow, data = training_iris)
+iris_cat_wflow_fit
+
+
+wf_fit_cat <- iris_cat_wflow_fit %>% 
+  workflows::extract_fit_parsnip()
+
+wf_fit_cat$fit$variable.importance
+
+pred_species <- predict(iris_cat_wflow_fit, new_data = training_iris)
+
+yardstick::accuracy(training_iris,
+                    truth = Species, estimate = pred_species$.pred_class)  # we have 97% accuracy here
+
+count(training_iris, Species)
+count(pred_species, .pred_class)
+
+predicted_and_truth <- dplyr::bind_cols(training_iris,
+                                        predicted_species = dplyr::pull(pred_species, .pred_class))
+
+predicted_and_truth %>% head()
 
 
 ###################################################################################################################

@@ -100,6 +100,9 @@ data_set %>%
 ############################################### Graph ###################################################
 #########################################################################################################
 
+# How to call a dataset from the package
+data(gapminder, package = "gapminder")
+
 # How to set view section divide by ----
 par(mfrow = c(2,2))  # first 2 is nrow, second 2 is ncol
 
@@ -532,7 +535,7 @@ tophitter %>%
   ggplot2::geom_segment(mapping = aes(yend = name), xend = 0, color = "grey50") +
   ggplot2::geom_point(size = 3, mapping = aes(color = lg)) +
   ggplot2::scale_color_brewer(palette = "Set1", limits = c("NL", "AL"), guide = FALSE) +
-  ggplot2::theme_bw() +
+  ggthemes::theme_igray() +
   ggplot2::theme(panel.grid.major.y = element_blank()) +
   ggplot2::facet_grid(lg ~ ., scales = "free_y", space = "free_y") +
   geom_text(mapping = aes(label = avg),
@@ -540,7 +543,6 @@ tophitter %>%
             size = 3.5,
             hjust = -0.2) +
   coord_cartesian(xlim = c(0.31, 0.354))
-
 
 
 
@@ -666,24 +668,33 @@ ggplot2::ggplot(data = df, mapping = aes(x = time, y = change, fill = person)) +
   ggplot2::geom_area()
 
 
-### dumbbell chart
+### dumbbell chart  (This is basically, showing min and max between two time frame)
 ####Create fake sample data
-Bob <- tibble::tibble(person = rep("Bob", 5), time = seq(1:5), change = runif(5, 0, 25))
-Sue <- tibble::tibble(person = rep("Sue", 5), time = seq(1:5), change = runif(5, 0, 25))
-Lisa <- tibble::tibble(person = rep("Lisa", 5), time = seq(1:5), change = runif(5, 0, 25))
-df <- dplyr::bind_rows(Bob, Sue, Lisa)
+data(gapminder, package = "gapminder")
 
-df2 <- df %>%
-  dplyr::filter(time == 1 | time == 5) %>%
-  tidyr::pivot_wider(names_from = time, values_from = change) %>%
-  dplyr::rename(year1 = `1`, year5 = `5`)
+gapminder %>% 
+  dplyr::filter(continent == "Americas" &
+                  year %in% c(1952, 2007)) %>% 
+  dplyr::select(country, year, lifeExp) %>% 
+  tidyr::spread(year, lifeExp) %>% 
+  dplyr::rename(y1952 = "1952",
+                y2007 = "2007") -> gapminder_tidy
 
 # dumbbell plot with ggalt
-ggplot2::ggplot(data = df2, mapping = aes(y = reorder(person, year1), x = year1, xend=year5))+
-  ggalt::geom_dumbbell(colour_x="purple", 
-                       colour_xend="red",size_x=3,
-                       size_xend=3) +
-  ggplot2::labs(x = NULL, y = "Person")
+ggplot2::ggplot(data = gapminder_tidy, mapping = aes(y = reorder(country, y1952), 
+                                                     x = y1952, 
+                                                     xend = y2007)) +
+  ggalt::geom_dumbbell(size = 1.2,
+                       size_x = 3,
+                       size_xend = 3,
+                       color = "grey",
+                       colour_x = "blue",
+                       colour_xend = "red") +
+  ggplot2::labs(title = "Change in Life Expectancy",
+                subtitle = "1952 to 2007",
+                x = "Life Expectancy (years)", 
+                y = "Person") +
+  ggthemes::theme_igray()
 
 
 # Waterfall plot using waterfalls
@@ -746,6 +757,10 @@ sfit <- survival::survfit(Surv(time, status) ~ sex, data = lung)
 survminer::ggsurvplot(sfit,
                       conf.int = TRUE,
                       pval = TRUE)
+
+
+
+
 
 
 ###################################################################################################################

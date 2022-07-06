@@ -649,6 +649,30 @@ predicted_and_truth <- dplyr::bind_cols(training_iris,
 
 predicted_and_truth %>% head()
 
+# Step 7: Fit the model to our cross validation folds
+set.seed(122)
+resample_fit <- tune::fit_resamples(iris_cat_wflow, vfold_iris)
+collect_metrics(resample_fit)   # check your model's accuracy
+
+# Step 8: see how this changes when we now tune a hyper parameter
+set.seed(122)
+cat_model_tune <- parsnip::decision_tree(min_n = tune()) %>% 
+                  parsnip::set_mode("classification") %>% 
+                  parsnip::set_engine("rpart")
+
+cat_model_tune
+
+
+# Step 9: Create a new workflow using the catgorical recipe and tuning model
+iris_cat_wflow_tune <- workflows::workflow() %>% 
+                       workflows::add_recipe(cat_recipe) %>% 
+                       workflows::add_model(cat_model_tune)
+
+iris_cat_wflow_tune
+
+resample_fit <- tune::tune_grid(iris_cat_wflow_tune, resamples = vfold_iris, grid = 4)
+tune::collect_metrics(resample_fit)
+tune::show_best(resample_fit, metric = "accuracy")
 
 ###################################################################################################################
 ################################################ K-Nearest Model ##################################################

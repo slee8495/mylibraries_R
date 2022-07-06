@@ -160,7 +160,6 @@ dplyr::mutate(original_column_name = as.double(original_column_name))
 
 # Vlookup (most perfect one) ----
 merge(Main_data_frame, refefence_data_frame[, c("reference_col_name", "new_data_col_name # make sure to match the name")], by = "reference_col_name", all.x = TRUE) 
-# https://urldefense.com/v3/__https://lightblog.tistory.com/16__;!!EbZCMq5wDfirIg!iTWROOhR1FIFpGtjTQg6cazQ-cPHmveCSvAgtMrFsstDAyc_S38xY4V3DJxFWhEON__DWGp221T0CW1mmsxp$ 
 
 # dplyr::relocate ----
 dplyr::relocate(col_name, .after = "col_name")
@@ -225,9 +224,12 @@ variance_1 %>%
 # How to write in rds file
 write_rds(data.frame, 'name.rds', compress = 'gz')
 
-# How to save in RData file
+# How to save in RData or rds file
 save(data.frame, file = "name.RData")
 save(data.frame, file = "name.rds")
+
+# How to load 
+load("name.rds")
 
 
 # How to use cut function to simplify ifelse with dplyr::mutate ----

@@ -789,6 +789,31 @@ leaflet::leaflet() %>%
   leaflet::addTiles() %>% 
   leaflet::addMarkers(lng = -117.8230, lat = 33.6846, popup = "Irvine")
 
+# basic world map using geom_polygon
+# sample data  library(maps)
+my_world_map <- map_data("world")
+
+ggplot2::ggplot(data = my_world_map, mapping = aes(x= long, y = lat, group = group))+
+  ggplot2::geom_polygon(fill= "white", color = "black")
+
+ggplot2::ggplot(data = my_world_map, mapping = aes(x= long, y = lat, group = group))+
+  ggplot2::geom_polygon(mapping = aes(fill = region),
+                        show.legend = FALSE)
+
+
+# USA, Canada, South Korea
+my_world_map %>% 
+  dplyr::filter(region %in% c("USA", "Canada", "South Korea")) %>% 
+  ggplot2::ggplot(mapping = aes(x = long, y = lat, group = group)) +
+  ggplot2::geom_polygon(mapping = aes(fill = region), color = "black")
+
+# region by long & lat
+my_world_map %>% 
+  dplyr::filter(long < -50 & long > -200 & lat < 90 & lat > 20) %>% 
+  ggplot2::ggplot(mapping = aes(x = long, y = lat, group = group)) +
+  ggplot2::geom_polygon(mapping = aes(fill = region), color = "black",
+                        show.legend = FALSE)
+
 
 ###################################################################################################################
 ############################################## labeling & emphasizing series ######################################

@@ -663,9 +663,10 @@ Lisa <- tibble(person = rep("Lisa",5), time = seq(1:5), change = runif(5,0,25))
 
 df <- bind_rows(Bob, Sue, Lisa)
 
-######## plot the stacked lineplot
+## area plot the stacked lineplot
 ggplot2::ggplot(data = df, mapping = aes(x = time, y = change, fill = person)) +
   ggplot2::geom_area()
+
 
 
 ### dumbbell chart  (This is basically, showing min and max between two time frame)
@@ -760,6 +761,20 @@ survminer::ggsurvplot(sfit,
 
 
 
+# Slope plot (ranking by time change)
+# sample data library(CGPfunctions)
+gapminder %>% 
+  dplyr::filter(year %in% c(1992, 1997, 2002, 2007) & 
+                  country %in% c("Panama", "Costa Rica", "Nicaragua", "Honduras",
+                                 "El Salvador", "Guatemala", "Belize")) %>% 
+  dplyr::mutate(year = factor(year),
+                lifeExp = round(lifeExp)) -> slope
+
+
+CGPfunctions::newggslopegraph(slope, year, lifeExp, country) +
+  ggplot2::labs(title = "Life Expectancy by Country",
+                subtitle = "Central America",
+                caption = "source: gapminder")
 
 
 

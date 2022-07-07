@@ -833,11 +833,47 @@ ggplot2::ggplot(data = usa, mapping = aes(x= long, y= lat, group = group)) +
 
 # Drawing other country map
 library(map)
+
 world %>% 
-  dplyr::filter(region == "Japan") %>% 
-  ggplot2::ggplot(mapping = aes(x = long, y = lat, group = group)) +
+  dplyr::filter(region == "Japan") -> japan
+ 
+ggplot2::ggplot(data = japan, mapping = aes(x = long, y = lat, group = group)) +
+ggplot2::geom_polygon(color = "black", fill = "white") +
+ggraph::theme_graph() 
+
+# adding cities with point
+maps::world.cities %>% 
+  dplyr::filter(country.etc == "Japan") -> japan.cities
+
+ggplot2::ggplot(data = japan, mapping = aes(x = long, y = lat, group = group)) +
   ggplot2::geom_polygon(color = "black", fill = "white") +
+  ggplot2::geom_point(data = japan.cities,
+                      mapping = aes(x = long, y = lat, group = NULL), 
+                      color = "red",
+                      alpha = 0.2) +
   ggraph::theme_graph() 
+
+# let's pick just the big cities
+japan.cities %>% 
+  dplyr::filter(country.etc == "Japan" & pop > 500000) -> japan.big.cities
+
+ggplot2::ggplot(data = japan, mapping = aes(x= long, y= lat, group = group)) +
+  ggplot2::geom_polygon(color = "black", fill = "white") +
+  ggplot2::geom_point(data = japan.big.cities, 
+                      mapping = aes(x = long, y = lat, group = NULL),
+                      color="blue",
+                      alpha = 0.3,
+                      size = 5)
+
+####vary size of point by city size
+ggplot2::ggplot(data = japan, 
+                mapping = aes(x= long, y= lat, group = group)) +
+  ggplot2::geom_polygon(color = "black", fill = "white") +
+  ggplot2::geom_point(data = japan.big.cities,
+                      mapping = aes(x = long, y = lat, group = NULL, size = pop),
+                      color = "blue",
+                      alpha = 0.3)
+
 
 ###################################################################################################################
 ############################################## labeling & emphasizing series ######################################

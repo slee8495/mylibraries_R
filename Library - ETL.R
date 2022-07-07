@@ -25,8 +25,8 @@ readxl::read_excel(path      = "C:/Users/stanl/OneDrive/Desktop/New folder/.xlsx
 
 # How to read xlsb file
 library(readxlsb)
-xlsbtest <- read_xlsb(path = "C:/Users/slee/OneDrive - Ventura Foods/Ventura Work/SCE/Project/FY 23/Safety Stock Compliance/Automation/raw/xlsbtest.xlsb",
-                      sheet = "test2")
+xlsbtest <- read_xlsb(path = "C:/Users/slee/OneDrive/.xlsb",
+                      sheet = "sheetname")
 
 # write into image file 
 pivot_table_gt %>%

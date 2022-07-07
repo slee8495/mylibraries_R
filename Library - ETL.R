@@ -54,6 +54,9 @@ dat <- drop_na(read_csv(url("https://urldefense.com/v3/__https://www.dropbox.com
 # using read.table and colClasses will reduce the usage of your memory
 read.table("datastable.txt", colClasses = "classes")
 
+# How to call a dataset from the package
+utils::data("stackoverflow", "car_prices", "Sacramento", package = "modeldata")
+
 
 ################################################## Column data type control ########################################
 # very good way to see columns ----

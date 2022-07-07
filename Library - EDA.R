@@ -101,7 +101,8 @@ data_set %>%
 #########################################################################################################
 
 # How to call a dataset from the package
-data(gapminder, package = "gapminder")
+utils::data(gapminder, package = "gapminder")
+utils::data("stackoverflow", "car_prices", "Sacramento", package = "modeldata")
 
 # How to set view section divide by ----
 par(mfrow = c(2,2))  # first 2 is nrow, second 2 is ncol
@@ -671,7 +672,7 @@ ggplot2::ggplot(data = uspopage, mapping = aes(x = Year, y = Thousands, fill = A
 
 ### dumbbell chart  (This is basically, showing min and max between two time frame)
 ####Create fake sample data
-data(gapminder, package = "gapminder")
+utils::data(gapminder, package = "gapminder")
 
 gapminder %>% 
   dplyr::filter(continent == "Americas" &
@@ -752,7 +753,7 @@ ggplot2::ggplot() +
 
   
 ## Survival plot
-data(lung, package = "survival")
+utils::data(lung, package = "survival")
 
 sfit <- survival::survfit(Surv(time, status) ~ sex, data = lung)
 survminer::ggsurvplot(sfit,
@@ -943,7 +944,7 @@ ggplot2::ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
   ggforce::geom_mark_ellipse(mapping = aes(label = cyl, group = cyl))
 
 # labeling and emphasizing using gghighlight::gghighlight
-data(Oxboys, package = "nlme")
+utils::data(Oxboys, package = "nlme")
 ggplot2::ggplot(data = Oxboys, mapping = aes(x = age, y = height)) +
   ggplot2::geom_line(mapping = aes(group = Subject, color = Subject)) +
   ggplot2::geom_point() +

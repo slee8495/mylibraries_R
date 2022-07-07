@@ -814,6 +814,23 @@ my_world_map %>%
   ggplot2::geom_polygon(mapping = aes(fill = region), color = "black",
                         show.legend = FALSE)
 
+# Drawing US Main Land map
+library(map)
+usa <- map_data("state")
+
+ggplot2::ggplot(data = usa, mapping = aes(x= long, y= lat, group = group)) +
+  ggplot2::geom_polygon(fill = "white", color = "black") +
+  ggraph::theme_graph() +
+  ggplot2::labs(title="United States")
+# or
+ggplot2::ggplot(data = usa, mapping = aes(x= long, y= lat, group = group)) +
+  ggplot2::geom_polygon(mapping = aes(fill = region),
+                        show.legend = FALSE,
+                        color = "black") +
+  ggraph::theme_graph() +
+  ggplot2::labs(title="United States")
+
+
 
 ###################################################################################################################
 ############################################## labeling & emphasizing series ######################################

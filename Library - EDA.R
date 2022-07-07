@@ -830,7 +830,13 @@ ggplot2::ggplot(data = usa, mapping = aes(x= long, y= lat, group = group)) +
   ggraph::theme_graph() +
   ggplot2::labs(title="United States")
 
-
+# Drawing other country map
+library(map)
+world %>% 
+  dplyr::filter(region == "Japan") %>% 
+  ggplot2::ggplot(mapping = aes(x = long, y = lat, group = group)) +
+  ggplot2::geom_polygon(color = "black", fill = "white") +
+  ggraph::theme_graph() 
 
 ###################################################################################################################
 ############################################## labeling & emphasizing series ######################################

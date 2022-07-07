@@ -655,17 +655,17 @@ ggcorrplot(r,
 
 
 ######## Area plot
-# sample data to practice
+# sample data: gcookbook
+ggplot2::ggplot(data = uspopage, mapping = aes(x = Year, y = Thousands, fill = AgeGroup)) +
+  ggplot2::geom_area(color = "black") +
+  ggplot2::scale_fill_brewer(palette = "Blues")
 
-Bob <- tibble(person = rep("Bob",5), time = seq(1:5), change = runif(5,0,25))
-Sue <- tibble(person = rep("Sue",5), time = seq(1:5), change = runif(5,0,25))
-Lisa <- tibble(person = rep("Lisa",5), time = seq(1:5), change = runif(5,0,25))
+# Area chart reverse stack 
+# sample data: gcookbook
+ggplot2::ggplot(data = uspopage, mapping = aes(x = Year, y = Thousands, fill = AgeGroup, order = plyr::desc(AgeGroup))) +
+  ggplot2::geom_area(color = "black") +
+  ggplot2::scale_fill_brewer(palette = "Greens")
 
-df <- bind_rows(Bob, Sue, Lisa)
-
-## area plot the stacked lineplot
-ggplot2::ggplot(data = df, mapping = aes(x = time, y = change, fill = person)) +
-  ggplot2::geom_area()
 
 
 

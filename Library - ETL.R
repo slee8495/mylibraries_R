@@ -237,21 +237,27 @@ save(data.frame, file = "name.rds")
 load("name.rds")
 
 
-# How to use cut function to simplify ifelse with dplyr::mutate ----
+# How to use cut function to simplify ifelse with dplyr::mutate 
 data %>% 
   mutate(new_col = cut(original_condition_col, breaks = c(0, 14.99, 50, 150),  # let's say original_col is a numeric value 
                       include.lowest = TRUE,
                       labels = c("Under 15", "15 to 50", "Over 50")))  # and you want to create a new col to label                                                                                    categorical value
 
 
-# How to use across to change the value by col type all at once ----
+# How to use across to change the value by col type all at once 
 df %>% 
-  mutate(across(where(is.character), stringr::str_to_upper)) 
+  dplyr::mutate(across(where(is.character), stringr::str_to_upper)) 
+
 # easy explanation: take all the ch cols across all of the columns in the data, do the next command 
 # next command: in this case, stringr::str_to_upper
 
+# Using across for specific multiple columns
+df %>% 
+  dplyr::mutate(across(c(col1, col2, col3), as.factor))
 
-# This is how to do cumsum by certain criteria in a colmun ----
+
+
+# This is how to do cumsum by certain criteria in a colmun 
 
 library(gcookbook)
 cabbage_exp %>% 

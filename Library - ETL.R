@@ -5,14 +5,14 @@ object_size(variable)
 
 
 ############################################ Read & Write files ############################################
-# How to read large file ----
+# How to read large file 
 data.table::fread("/file.xlsx")
 
-# Read large file, columns what you need only ----
+# Read large file, columns what you need only 
 data.table::fread("/.xlsx",
                   select = c("", ""))
 
-# Read and Write Excel File ----
+# Read and Write Excel File 
 
 readxl::read_excel(file.choose())
 
@@ -23,11 +23,16 @@ readxl::read_excel(path      = "C:/Users/stanl/OneDrive/Desktop/New folder/.xlsx
   writexl::write_xlsx(Total_Picking,
                       path = "C:/Users/stanl/OneDrive/Desktop/New folder/.xlsx")
 
-# write into image file ----
+# How to read xlsb file
+library(readxlsb)
+xlsbtest <- read_xlsb(path = "C:/Users/slee/OneDrive - Ventura Foods/Ventura Work/SCE/Project/FY 23/Safety Stock Compliance/Automation/raw/xlsbtest.xlsb",
+                      sheet = "test2")
+
+# write into image file 
 pivot_table_gt %>%
   gtsave(filename = "006_pivot_tables/stock_returns.png")
 
-# How write multiple data into one excel file ----
+# How write multiple data into one excel file 
 openxlsx::createWorkbook("example") -> example
 openxlsx::addWorksheet(example, "tab_name_1")
 openxlsx::addWorksheet(example, "tab_name_2")
@@ -40,10 +45,10 @@ openxlsx::writeDataTable(example, "tab_name_3", data_3)
 openxlsx::saveWorkbook(example, file = "example.xlsx")
 
 
-# How to read text file ----
+# How to read text file 
 save <- read_file("filename.txt")
 
-# How to read url (sample) ----
+# How to read url (sample) 
 dat <- drop_na(read_csv(url("https://urldefense.com/v3/__https://www.dropbox.com/s/uhfstf6g36ghxwp/cces_sample_coursera.csv?raw=1__;!!EbZCMq5wDfirIg!jYKkBqb8NxW0toMgAH8iTNdAGgPGZZzLIM0HeIiENNagMP70VePH-qRJs-zp9KU2hbaOOBfM3IE1SiubY1Yh$ ")))
 
 # using read.table and colClasses will reduce the usage of your memory

@@ -878,7 +878,7 @@ ggplot2::ggplot(data = japan,
   ggplot2::geom_point(data = japan.big.cities_2,
                       mapping = aes(x = long, y = lat, group = NULL, size = pop, color = qual),
                       alpha = 0.8) +
-  scale_size_continuous(label=comma)  # this is how to get your legend from scientific number to normal number
+  ggplot2::scale_size_continuous(label=comma)  # this is how to get your legend from scientific number to normal number
 
 
 

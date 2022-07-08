@@ -313,6 +313,13 @@ a <- subset(presidential, start > economics$date[1])  # presidential and economi
 # add column - similar to cbind or dplyr::bind_cols
 tibble::add_column(data1, data2)
 
+# How to do unique in a data frame
+data %>% dplyr::distinct(col)
+
+# select numeric values only or character or factors etc.,  select_if
+data %>% 
+  dplyr::select_if(is.numeric)
+
 ################################################# Pivot ############################################
 # Pivot Using reshape2 (Pivot) ----
 

@@ -58,6 +58,14 @@ read.table("datastable.txt", colClasses = "classes")
 utils::data("stackoverflow", "car_prices", "Sacramento", package = "modeldata")
 
 
+# Multiple Sheets in one excel file to one data frame
+path <- "C:/Users/sanle/OneDrive/R/Work/CJ Logistics/Coway/Book1.xlsx"
+path %>% 
+  readxl::excel_sheets() %>% 
+  purrr::map_df(readxl::read_excel,
+                path      = path,
+                col_names = TRUE) -> OneSheet
+
 ################################################## Column data type control ########################################
 # very good way to see columns ----
 skimr::skim(data)

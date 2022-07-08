@@ -136,6 +136,7 @@ library(survminer)
 library(rpart)
 library(CGPfunctions)
 library(tune)
+library(scales)
 
 # Shiny Packages
 library(shiny)

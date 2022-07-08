@@ -869,13 +869,18 @@ ggplot2::ggplot(data = japan, mapping = aes(x= long, y= lat, group = group)) +
                       size = 5)
 
 ####vary size of point by city size
+japan.big.cities %>% 
+  dplyr::mutate(qual = sample(LETTERS[1:5], nrow(japan_big_cities), replace=TRUE)) -> japan.big.cities_2 # 5 different color
+
 ggplot2::ggplot(data = japan, 
                 mapping = aes(x= long, y= lat, group = group)) +
   ggplot2::geom_polygon(color = "black", fill = "white") +
-  ggplot2::geom_point(data = japan.big.cities,
-                      mapping = aes(x = long, y = lat, group = NULL, size = pop),
-                      color = "blue",
-                      alpha = 0.3)
+  ggplot2::geom_point(data = japan.big.cities_2,
+                      mapping = aes(x = long, y = lat, group = NULL, size = pop, color = qual),
+                      alpha = 0.8) +
+  scale_size_continuous(label=comma)  # this is how to get your legend from scientific number to normal number
+
+
 
 
 ###################################################################################################################

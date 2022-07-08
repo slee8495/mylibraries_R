@@ -663,10 +663,13 @@ ggplot2::ggplot(data = uspopage, mapping = aes(x = Year, y = Thousands, fill = A
 
 # Area chart reverse stack 
 # sample data: gcookbook
-ggplot2::ggplot(data = uspopage, mapping = aes(x = Year, y = Thousands, fill = AgeGroup, order = plyr::desc(AgeGroup))) +
+ggplot2::ggplot(data = uspopage, mapping = aes(x = Year, y = Thousands, fill = forcats::fct_rev(AgeGroup))) +
   ggplot2::geom_area(color = "black") +
-  ggplot2::scale_fill_brewer(palette = "Greens")
+  ggplot2::scale_fill_brewer(palette = "Greens", "New_Legend_Name") # How to change legend name  
 
+
+# legend flip anytime 
+mapping = aes(fill = forcats::fct_rev())
 
 
 

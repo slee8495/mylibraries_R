@@ -260,14 +260,19 @@ df %>%
 
 
 
-# This is how to do cumsum by certain criteria in a colmun 
-
+# This is how to do cumsum by a certain criteria in a colmun using ddply
 library(gcookbook)
 cabbage_exp %>% 
   dplyr::arrange(Date) -> ce
 
 
 plyr::ddply(ce, "Date", transform, cum_sum_by_date = cumsum(Weight))
+
+# Using ddply to add a column of percentage by a certain column
+library(gcookbook)
+library(plyr)
+
+plyr::ddply(uspopage, "Year", transform, Percent = Thousands / sum(Thousands))
 
 
 # How to do countif in R ----

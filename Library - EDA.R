@@ -811,6 +811,7 @@ treemap::treemap(diamonds,
 ######################################################### map series ##############################################
 ###################################################################################################################
 
+# theme: either ggplot2::theme_void() or ggraph::theme_graph() 
 
 # Map function using leaflet 
 leaflet::leaflet() %>% 
@@ -823,25 +824,30 @@ leaflet::leaflet() %>%
 my_world_map <- map_data("world")
 
 ggplot2::ggplot(data = my_world_map, mapping = aes(x= long, y = lat, group = group))+
-  ggplot2::geom_polygon(fill= "white", color = "black")
+  ggplot2::geom_polygon(fill= "white", color = "black") +
+  ggplot2::theme_void()
 
 ggplot2::ggplot(data = my_world_map, mapping = aes(x= long, y = lat, group = group))+
   ggplot2::geom_polygon(mapping = aes(fill = region),
-                        show.legend = FALSE)
+                        show.legend = FALSE,
+                        color = "black") +
+  ggplot2::theme_void()
 
 
 # USA, Canada, South Korea
 my_world_map %>% 
   dplyr::filter(region %in% c("USA", "Canada", "South Korea")) %>% 
   ggplot2::ggplot(mapping = aes(x = long, y = lat, group = group)) +
-  ggplot2::geom_polygon(mapping = aes(fill = region), color = "black")
+  ggplot2::geom_polygon(mapping = aes(fill = region), color = "black") +
+  ggplot2::theme_void()
 
 # region by long & lat
 my_world_map %>% 
   dplyr::filter(long < -50 & long > -200 & lat < 90 & lat > 20) %>% 
   ggplot2::ggplot(mapping = aes(x = long, y = lat, group = group)) +
   ggplot2::geom_polygon(mapping = aes(fill = region), color = "black",
-                        show.legend = FALSE)
+                        show.legend = FALSE) +
+  ggplot2::theme_void()
 
 # Drawing US Main Land map
 library(map)

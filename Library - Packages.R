@@ -137,6 +137,7 @@ library(rpart)
 library(CGPfunctions)
 library(tune)
 library(scales)
+library(treemap)
 
 # Shiny Packages
 library(shiny)

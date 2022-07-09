@@ -782,6 +782,31 @@ CGPfunctions::newggslopegraph(slope, year, lifeExp, country) +
 
 
 
+# Tree map / Heat map 
+library(treemap)
+treemap::treemap(diamonds,
+                 # data
+                 index = "cut",    # what do you want to measure?
+                 vSize = "carat",  # value has to be numeric
+                 type = "index",
+                 
+                 # Main
+                 title = "",
+                 palette = "Dark2",
+                 
+                 # Borders
+                 border.col = c("black"),
+                 border.lwds = 1,
+                 
+                 # Labels
+                 fontsize.labels = 5,
+                 fontcolor.labels = "white",
+                 fontface.labels = 2,
+                 align.labels = c("left", "top"),
+                 overlap.labels = 0.5,
+                 inflate.labels = TRUE)  # font size being affected by the rectangles size
+
+
 ###################################################################################################################
 ######################################################### map series ##############################################
 ###################################################################################################################

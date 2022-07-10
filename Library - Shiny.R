@@ -13,6 +13,8 @@ server <- function(input, output, session){
 
 ###############################################    UI    ################################################
 ui <- fluidPage(
+  title = "Data Explorer",
+  theme = bslib::bs_theme(version = 4, bootswatch = "minty"),
   selectInput("dataset", label = "Dataset", choices = ls("package:datasets")),  
   # up here, change your dataset (doesn't have to be list(ls))
   verbatimTextOutput("summary"),

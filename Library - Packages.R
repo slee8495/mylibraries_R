@@ -138,6 +138,7 @@ library(CGPfunctions)
 library(tune)
 library(scales)
 library(treemap)
+library(sf)
 
 # Shiny Packages
 library(shiny)
@@ -159,6 +160,7 @@ library(vroom)
 library(waiter)
 library(xml2)
 library(zeallot)
+library(bslib)
 
 
 

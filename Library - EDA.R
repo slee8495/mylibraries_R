@@ -850,7 +850,7 @@ my_world_map %>%
   ggplot2::theme_void()
 
 # Drawing US Main Land map
-library(map)
+library(maps)
 usa <- map_data("state")
 
 ggplot2::ggplot(data = usa, mapping = aes(x= long, y= lat, group = group)) +
@@ -866,8 +866,7 @@ ggplot2::ggplot(data = usa, mapping = aes(x= long, y= lat, group = group)) +
   ggplot2::labs(title="United States")
 
 # Drawing other country map
-library(map)
-
+world <- map_data("world")
 world %>% 
   dplyr::filter(region == "Japan") -> japan
  
@@ -899,7 +898,7 @@ ggplot2::ggplot(data = japan, mapping = aes(x= long, y= lat, group = group)) +
                       alpha = 0.3,
                       size = 5)
 
-####vary size of point by city size
+# vary size of point by city size
 japan.big.cities %>% 
   dplyr::mutate(qual = sample(LETTERS[1:5], nrow(japan_big_cities), replace=TRUE)) -> japan.big.cities_2 # 5 different color
 
@@ -909,7 +908,29 @@ ggplot2::ggplot(data = japan,
   ggplot2::geom_point(data = japan.big.cities_2,
                       mapping = aes(x = long, y = lat, group = NULL, size = pop, color = qual),
                       alpha = 0.8) +
-  ggplot2::scale_size_continuous(label=comma)  # this is how to get your legend from scientific number to normal number
+  ggplot2::scale_size_continuous(label = comma) #library(scales) 
+# this is how to get your legend from scientific number to normal number
+
+# Labeling to the map according to your data properly
+
+ggplot2::ggplot() +
+  ggplot2::geom_polygon(data = japan, 
+                        mapping = aes(x = long, y = lat, group = group), 
+                        fill="grey", 
+                        alpha = 1.2) +
+  ggplot2::geom_point(data = japan.big.cities_2, 
+                      mapping = aes(x = long, y = lat, alpha = pop)) +
+  ggrepel::geom_text_repel(data = japan.big.cities_2 %>% arrange(pop) %>% tail(10), 
+                           mapping = aes(x = long, y = lat, label = name), 
+                           size = 5) +
+  ggplot2::geom_point(data = japan.big.cities_2 %>% arrange(pop) %>% tail(10), 
+                      mapping = aes(x = long, y = lat), 
+                      color = "lightblue", 
+                      size = 3) +
+  ggplot2::theme_void() + 
+  ggplot2::coord_map() +
+  ggplot2::theme(legend.position = "none")
+
 
 
 

@@ -2,7 +2,14 @@
 mem_used()
 object_size(variable)
 
+# file remove in the dir
+file.remove("../.xlsx")
 
+# file rename in the dir
+file.rename("..'.xlsx")
+
+# create folder in the dir
+dir.create("test")
 
 ############################################ Read & Write files ############################################
 # How to read large file 

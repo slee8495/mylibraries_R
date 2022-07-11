@@ -2,7 +2,14 @@
 mem_used()
 object_size(variable)
 
+# file remove in the dir
+file.remove("../.xlsx")
 
+# file rename in the dir
+file.rename("..'.xlsx")
+
+# create folder in the dir
+dir.create("test")
 
 ############################################ Read & Write files ############################################
 # How to read large file 
@@ -280,7 +287,6 @@ library(gcookbook)
 cabbage_exp %>% 
   dplyr::arrange(Date) -> ce
 
-
 plyr::ddply(ce, "Date", transform, cum_sum_by_date = cumsum(Weight))
 
 # Using ddply to add a column of percentage by a certain column
@@ -289,6 +295,8 @@ library(plyr)
 
 plyr::ddply(uspopage, "Year", transform, Percent = Thousands / sum(Thousands))
 
+# plyr::ddply application - this is same as sumif
+plyr::ddply(uspopage, "Year", transform, Percent = sum(Thousands))
 
 # How to do countif in R ----
 dataset %>% 

@@ -223,20 +223,27 @@ sprintf('%.2f', number.set) -> number.set
 mutate(col = round(col, 2))
 
 
-# how to add row sum total at bottom ----
+# how to add row sum total at bottom 
 data.frame %>% 
   janitor::adorn_totals("row") -> vector
 
-# how to add col sum total at the right ----
+# how to add col sum total at the right 
 DSX_pivot_1 %>% 
   janitor::adorn_totals(where = "col", na.rm = TRUE, name = "total_12_month")
 
-# How to combine two different columns names (Left Join) ----
+
+# How to bring only one column from resources dataset (Left Join)
+data1 %>% 
+  dplyr::left_join(data2 %>% dplyr::select(col1, col3),
+                   by = "col1")
+
+
+# How to combine two different columns names (Left Join) 
 variance_1 %>%
   dplyr::left_join(variance_2, by = c("variance_1_column" = "variance_2_column"))
 
 
-# How to Save Files ----
+# How to Save Files 
 # How to write in rds file
 write_rds(data.frame, 'name.rds', compress = 'gz')
 

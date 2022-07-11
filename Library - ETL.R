@@ -194,7 +194,8 @@ df %>%
   tidyr::separate(x, c('Name', 'Surname'))
 
 # right formula in R ----
-substr(data_not_data_frame, nchar(data_not_data_frame)-2, nchar(data_not_data_frame))
+ssmetrics_final$temp -> temp_item
+substr(temp_item, nchar(temp_item)-2, nchar(temp_item))
 
 
 # Left formula in R ----

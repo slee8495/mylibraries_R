@@ -813,6 +813,11 @@ treemap::treemap(diamonds,
 
 # theme: either ggplot2::theme_void() or ggraph::theme_graph() 
 
+# data
+maps::world.cities
+map_data("world") 
+map_data("state")
+
 # Map function using leaflet 
 leaflet::leaflet() %>% 
   leaflet::setView(lng = -117.8230, lat = 33.6846, zoom = 16) %>% 

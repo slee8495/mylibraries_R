@@ -813,16 +813,19 @@ treemap::treemap(diamonds,
 
 # theme: either ggplot2::theme_void() or ggraph::theme_graph() 
 
-# data
-maps::world.cities
-map_data("world") 
-map_data("state")
-
 # Map function using leaflet 
 leaflet::leaflet() %>% 
   leaflet::setView(lng = -117.8230, lat = 33.6846, zoom = 16) %>% 
   leaflet::addTiles() %>% 
   leaflet::addMarkers(lng = -117.8230, lat = 33.6846, popup = "Irvine")
+
+###################### ggplot2::geom_polygon() version ##################
+
+# data
+maps::world.cities
+map_data("world") 
+map_data("state")
+
 
 # basic world map using geom_polygon
 # sample data  library(maps)
@@ -948,18 +951,18 @@ ggplot2::ggplot(data = state) +
                         fill = "white", 
                         color = "black",
                         show.legend = FALSE) +
-  ggplot2::theme_bw()
+  ggplot2::theme_void()
 
 
 # 2
 maps::world.cities -> city
-city %>% filter(country.etc == "USA" & name %in% c("Los Angeles", "Tucson", "Portland", "San Francisco", "Irvine")) %>% 
+city %>% filter(country.etc == "USA" & name %in% c("Los Angeles", "Tucson", "Portland", "Irvine", "San Diego")) %>% 
   filter(lat < 50 & lat > 0 & long < -100 & long > -130) -> cities
 
 
-state %>% filter(region %in% c("california", "oregon", "arizona")) -> aa
+state %>% filter(region %in% c("california", "oregon", "arizona")) -> sample_states
 
-ggplot2::ggplot(data = aa, mapping = aes(x = long, y = lat, group = group)) +
+ggplot2::ggplot(data = sample_states, mapping = aes(x = long, y = lat, group = group)) +
   ggplot2::geom_polygon(mapping = aes(fill = region),
                         show.legend = FALSE,
                         fill = "white",
@@ -972,10 +975,16 @@ ggplot2::ggplot(data = aa, mapping = aes(x = long, y = lat, group = group)) +
                       size = 5,
                       alpha = 0.5,
                       show.legend = FALSE) +
-  ggplot2::theme_bw()
+  ggplot2::theme_void()
 
 
 
+###################### simple feature version geom_sf ##################
+# For U.S data   # advantage of this: Alaska and Hawaii added to US map
+library(albersusa)
+ggplot2::ggplot() + 
+  ggplot2::geom_sf(data = usa_sf()) + 
+  ggplot2::theme_void()
 
 ###################################################################################################################
 ############################################## labeling & emphasizing series ######################################

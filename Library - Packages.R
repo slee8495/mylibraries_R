@@ -139,6 +139,9 @@ library(tune)
 library(scales)
 library(treemap)
 library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(rgeos)
 
 # Shiny Packages
 library(shiny)

@@ -352,6 +352,13 @@ dim(dplyr::intersect(traincities, testcities))  # number of
 dplyr::setdiff(traincities, testcities)
 dim(dplyr::setdiff(traincities, testcities))  # number of
 
+# This is how you get top  10 rank 
+subset(data, rank(col_name) > nrow(data) - 10)
+
+data %>% 
+  dplyr::arrange(desc(col_name)) %>% 
+  dplyr::slice_head(n = 10)
+
 
 ################################################# Pivot ############################################
 # Pivot Using reshape2 (Pivot) ----
@@ -527,7 +534,7 @@ dplyr::mutate(test = replace(test, is.nan(test), 0))
 ################################ Dealing with the Date ###################################
 # Format Cheatsheet
 sample %>% 
-  dplyr::mutate(date = as.Date(date, format = "%Y/%m/%d"))
+  dplyr::mutate(date = format(as.Date(date), "%m/%d/%y")) 
 
 Year 
 # %Y - 4 digits
@@ -559,17 +566,6 @@ Nondigits
 # %* - skips any number of nondigits
 
 
-
-# Text sentiment Analysis 
-vader::get_vader("I love analytics!")    # you will see scores (positive, neutral, negative, compound, but_count)
-
-
-# This is how you get top  10 rank 
-subset(data, rank(col_name) > nrow(data) - 10)
-
-data %>% 
-  dplyr::arrange(desc(col_name)) %>% 
-  dplyr::slice_head(n = 10)
 
 # How to extract month, weekday, monthday from date column 
 df %>% mutate(Month = lubridate::month(Transaction.Date),
@@ -725,6 +721,11 @@ sentimented %>%
   dplyr::mutate(tone = positive - negative) %>%   # create "tone"
   ggplot2::ggplot(mapping = aes(x = order, y = tone)) +
   ggplot2::geom_area()
+
+
+
+# Text sentiment Analysis 
+vader::get_vader("I love analytics!")    # you will see scores (positive, neutral, negative, compound, but_count)
 
 
 

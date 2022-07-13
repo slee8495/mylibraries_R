@@ -344,6 +344,15 @@ data %>% dplyr::distinct(col)
 data %>% 
   dplyr::select_if(is.numeric)
 
+# How to find the overlapped objects from the two different data
+dplyr::intersect(traincities, testcities)
+dim(dplyr::intersect(traincities, testcities))  # number of
+
+# How to find the different objects from the two different data
+dplyr::setdiff(traincities, testcities)
+dim(dplyr::setdiff(traincities, testcities))  # number of
+
+
 ################################################# Pivot ############################################
 # Pivot Using reshape2 (Pivot) ----
 

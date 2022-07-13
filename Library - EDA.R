@@ -938,6 +938,43 @@ ggplot2::ggplot() +
 
 
 
+### United States Sample ###
+
+# 1
+map_data("state") -> state
+
+ggplot2::ggplot(data = state) +
+  ggplot2::geom_polygon(mapping = aes(x = long, y = lat, group = group, fill = region),
+                        fill = "white", 
+                        color = "black",
+                        show.legend = FALSE) +
+  ggplot2::theme_bw()
+
+
+# 2
+maps::world.cities -> city
+city %>% filter(country.etc == "USA" & name %in% c("Los Angeles", "Tucson", "Portland", "San Francisco", "Irvine")) %>% 
+  filter(lat < 50 & lat > 0 & long < -100 & long > -130) -> cities
+
+
+state %>% filter(region %in% c("california", "oregon", "arizona")) -> aa
+
+ggplot2::ggplot(data = aa, mapping = aes(x = long, y = lat, group = group)) +
+  ggplot2::geom_polygon(mapping = aes(fill = region),
+                        show.legend = FALSE,
+                        fill = "white",
+                        color = "black") +
+  ggplot2::coord_map() +
+  ggrepel::geom_text_repel(data = cities,
+                           mapping = aes(x = long, y = lat, group = NULL, label = name)) +
+  ggplot2::geom_point(data = cities, 
+                      mapping = aes(x = long, y = lat, group = NULL, color = name),
+                      size = 5,
+                      alpha = 0.5,
+                      show.legend = FALSE) +
+  ggplot2::theme_bw()
+
+
 
 
 ###################################################################################################################

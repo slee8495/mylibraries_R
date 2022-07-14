@@ -831,11 +831,11 @@ map_data("state")
 # sample data  library(maps)
 my_world_map <- map_data("world")
 
-ggplot2::ggplot(data = my_world_map, mapping = aes(x= long, y = lat, group = group))+
+ggplot2::ggplot(data = my_world_map, mapping = aes(x= long, y = lat, group = group)) +
   ggplot2::geom_polygon(fill= "white", color = "black") +
   ggplot2::theme_void()
 
-ggplot2::ggplot(data = my_world_map, mapping = aes(x= long, y = lat, group = group))+
+ggplot2::ggplot(data = my_world_map, mapping = aes(x= long, y = lat, group = group)) +
   ggplot2::geom_polygon(mapping = aes(fill = region),
                         show.legend = FALSE,
                         color = "black") +
@@ -976,6 +976,24 @@ ggplot2::ggplot(data = sample_states, mapping = aes(x = long, y = lat, group = g
                       alpha = 0.5,
                       show.legend = FALSE) +
   ggplot2::theme_void()
+
+
+## How to put the continouse color in the map
+# sample data
+my_world_map <- map_data("world")
+countries <- unique(my_world_map$region)
+set.seed(987)
+some_data_values <- data.frame(
+  "region"=countries,
+  "Score"=runif(252,0,100))
+
+# map
+dplyr::left_join(my_world_map, some_data_values, by = "region") -> question_1
+ggplot2::ggplot(data = question_1, mapping = aes(x= long, y = lat, group = group))+
+  ggplot2::geom_polygon(mapping = aes(fill = Score),
+                        color = "black") +
+  ggplot2::scale_fill_distiller(palette = 5)
+
 
 
 

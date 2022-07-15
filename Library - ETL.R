@@ -162,6 +162,11 @@ stock_plot <- stock_data_tbl %>%
 diamonds %>% 
   dplyr::filter(dplyr::between(y, 3, 20))
 
+# delete rows multiple condition using filter (dplyr)
+data %>% 
+  dplyr::filter(!(col1 == "P" & col2 == 0)) 
+
+
 # Using between with filter (dplyr) ---- for date type  (make sure to match your date type with your data)
 shipdate_changed %>% 
   dplyr::select(contains("date")) %>% 
@@ -532,6 +537,10 @@ dplyr::mutate(test = replace(test, is.nan(test), 0))
 
 
 ################################ Dealing with the Date ###################################
+# How to change type from Character to Date (format: 6/5/22)
+data %>% 
+  dplyr::mutate(Date = lubridate::as_date(Date, format = "%m/%d/%y")) 
+
 # Format Cheatsheet
 sample %>% 
   dplyr::mutate(date = format(as.Date(date), "%m/%d/%y")) 

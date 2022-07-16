@@ -826,6 +826,9 @@ maps::world.cities
 map_data("world") 
 map_data("state")
 
+# For point color, use this function
+ggplot2::scale_color_distiller(palette = 7)
+
 
 # basic world map using geom_polygon
 # sample data  library(maps)
@@ -890,8 +893,8 @@ ggplot2::ggplot(data = japan, mapping = aes(x = long, y = lat, group = group)) +
   ggplot2::geom_polygon(color = "black", fill = "white") +
   ggplot2::geom_point(data = japan.cities,
                       mapping = aes(x = long, y = lat, group = NULL), 
-                      color = "red",
                       alpha = 0.2) +
+  ggplot2::scale_color_distiller(palette = 7) +           # this is usually used point color in conjunction with polygon
   ggraph::theme_graph() 
 
 # let's pick just the big cities

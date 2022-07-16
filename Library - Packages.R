@@ -142,6 +142,9 @@ library(sf)
 library(rnaturalearth)
 library(rnaturalearthdata)
 library(rgeos)
+library(magick)
+library(gganimate)
+
 
 # Shiny Packages
 library(shiny)

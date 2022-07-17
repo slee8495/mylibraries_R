@@ -146,6 +146,8 @@ library(magick)
 library(gganimate)
 library(gifski)
 library(transformr)
+library(esquisse)
+library(modeldata)
 
 
 # Shiny Packages

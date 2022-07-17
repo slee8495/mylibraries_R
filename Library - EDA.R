@@ -1286,6 +1286,28 @@ library(transformr)
 
 # gganimate::animate(fig,renderer=magick_renderer())
 
+# gganimate::transition_states
+ggplot2::ggplot(data = mtcars, mapping = aes(x = factor(cyl), y = mpg)) +
+  ggplot2::geom_boxplot()+
+  ggplot2::facet_wrap(~gear)
+
+ggplot2::ggplot(data = mtcars, mapping = aes(x = factor(cyl), y = mpg)) +
+  ggplot2::geom_boxplot() +
+  gganimate::transition_states(gear)
+
+# gganimate::transition_time
+# sample data
+cel <- read_csv(url("https://www.dropbox.com/s/4ebgnkdhhxo5rac/cel_volden_wiseman%20_coursera.csv?raw=1"))
+cel %>%
+  dplyr::mutate(recode(party, "1" = "Democrat", "0" = "Republican")) %>% 
+  dplyr::group_by(year,party) %>%
+  dplyr::summarise("Seats"=n()) -> cong_dat
+
+ggplot2::ggplot(data = cong_dat, mapping = aes(x = year, y = Seats, fill = party)) +
+  ggplot2::geom_bar(stat = "identity") +
+  ggplot2::geom_hline(yintercept = 217) +
+  ggplot2::scale_fill_manual(values = c("blue", "red")) +
+  gganimate::transition_time(year)
 
 
 

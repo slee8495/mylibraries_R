@@ -1281,7 +1281,12 @@ ggplot2::ggplot(data = students_table, mapping = aes(axis1 = groupid, axis2 = ge
 ######################################### Animation series ##########################################
 #####################################################################################################
 library(gganimate)
-gganimate::animate(fig,renderer=magick_renderer())
+library(gifski)
+library(transformr)
+
+# gganimate::animate(fig,renderer=magick_renderer())
+
+
 
 
 

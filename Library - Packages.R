@@ -144,6 +144,8 @@ library(rnaturalearthdata)
 library(rgeos)
 library(magick)
 library(gganimate)
+library(gifski)
+library(transformr)
 
 
 # Shiny Packages

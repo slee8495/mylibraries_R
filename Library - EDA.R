@@ -1294,9 +1294,16 @@ library(gganimate)
 library(gifski)
 library(transformr)
 
-# gganimate::animate(fig,renderer=magick_renderer())
+# gganimate::transition_states (Using same variable as your xaxis)
 
-# gganimate::transition_states
+ggplot2::ggplot(data = mtcars, mapping = aes(x = factor(cyl), y = mpg)) +
+  ggplot2::geom_boxplot()
+
+ggplot2::ggplot(data = mtcars, mapping = aes(x = factor(cyl), y = mpg)) +
+  ggplot2::geom_boxplot() +
+  gganimate::transition_states(factor(cyl))
+
+# gganimate::transition_states  (using different variable(to group) for your animate)
 ggplot2::ggplot(data = mtcars, mapping = aes(x = factor(cyl), y = mpg)) +
   ggplot2::geom_boxplot()+
   ggplot2::facet_wrap(~gear)
@@ -1318,6 +1325,22 @@ ggplot2::ggplot(data = cong_dat, mapping = aes(x = year, y = Seats, fill = party
   ggplot2::geom_hline(yintercept = 217) +
   ggplot2::scale_fill_manual(values = c("blue", "red")) +
   gganimate::transition_time(year)
+
+
+# gganimate::transition_layers
+cel <- read_csv(url("https://www.dropbox.com/s/4ebgnkdhhxo5rac/cel_volden_wiseman%20_coursera.csv?raw=1"))
+
+ggplot2::ggplot() +
+  ggplot2::geom_jitter(data = dplyr::filter(cel, congress == 115 & party == "Democrat"),
+                       mapping = aes(x = seniority, y = all_pass, color = party)) +
+  ggplot2::geom_jitter(data = dplyr::filter(cel, congress == 115 & party == "Republican"), 
+                       mapping = aes(x = seniority, y = all_pass, color = party)) +
+  ggplot2::geom_smooth(data = filter(cel, congress == 115 & party == "Democrat"), 
+                       mapping = aes(x = seniority, y = all_pass, color = party)) +
+  ggplot2::geom_smooth(data = filter(cel, congress == 115 & party == "Republican"), 
+                       mapping = aes(x = seniority, y = all_pass, color = party)) +
+  ggplot2::scale_color_manual(values = c("blue", "red")) +
+  gganimate::transition_layers()
 
 
 

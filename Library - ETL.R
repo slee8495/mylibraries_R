@@ -118,6 +118,13 @@ data$col <- as.double(data$col)
 517 %/% 100  # 5
 517 %% 100   # 17
 
+# rate 
+# example: let's say we have a data with pop information, this is 
+# how many are injured per 10,000 people. 
+dplyr::mutate(rate = n / population * 10000)
+
+
+
  
 ############################################## Simple Data manipulation #################################
 
@@ -254,6 +261,10 @@ data1 %>%
 # How to combine two different columns names (Left Join) 
 variance_1 %>%
   dplyr::left_join(variance_2, by = c("variance_1_column" = "variance_2_column"))
+
+# How to do left_join by multiple conditions
+data1 %>% 
+  dplyr::left_join(data2, by = c("col1", "col2"))
 
 
 # How to Save Files 

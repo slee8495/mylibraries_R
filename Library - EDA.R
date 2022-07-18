@@ -1294,6 +1294,9 @@ library(gganimate)
 library(gifski)
 library(transformr)
 
+# Saving animated visual
+gganimate::anim_save("test.gif", animation = anim3)
+
 # gganimate::transition_states (Using same variable as your xaxis)
 
 ggplot2::ggplot(data = mtcars, mapping = aes(x = factor(cyl), y = mpg)) +
@@ -1344,7 +1347,21 @@ ggplot2::ggplot() +
 
 
 
+# gganimate::enter_fade(), exit_fade()
 
+# Fade-in, fade-out
+ggplot_data %>% 
+  gganimate::enter_fade() +
+  gganimate::exit_fade()
+
+
+# shadowing using gganimate::shadow_wake()
+ggplot2::ggplot(data = cong_dat, mapping = aes(x = year, y = Seats, fill = party)) +
+  ggplot2::geom_bar(stat = "identity") +
+  ggplot2::geom_hline(yintercept = 217) +
+  ggplot2::scale_fill_manual(values = c("blue", "red")) +
+  gganimate::transition_time(year) +
+  gganimate::shadow_wake(wake_length = 1, alpha = FALSE, wrap = FALSE)
 
 
 

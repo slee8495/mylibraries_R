@@ -1365,3 +1365,21 @@ ggplot2::ggplot(data = cong_dat, mapping = aes(x = year, y = Seats, fill = party
 
 
 
+# Yet another example (Transition Time, how to set your title by the change)
+# sample data library(gapminder)
+
+ggplot2::ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
+  ggplot2::geom_point(mapping = aes(size = pop, color = country),
+                      show.legend = FALSE,
+                      alpha = 0.7) +
+  ggplot2::facet_wrap(~ continent) +
+  ggplot2::scale_color_manual(values = country_colors) +
+# country_colors are like.. usually same group of colors in the same continent
+  ggplot2::scale_size(range = c(2, 12)) +
+  ggplot2::scale_x_log10() +
+# here comes the animation part
+  ggplot2::labs(title = "Year: {frame_time}", x = "GDP per capita", y = "life expectancy") +
+  gganimate::transition_time(year) +
+  gganimate::ease_aes("linear")
+
+

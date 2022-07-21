@@ -1142,7 +1142,7 @@ ggplot2::ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
 
 library(hrbrthemes) # there are many good themes here
 library(ggthemes)
-
+plotly::ggplotly(g)  # This makes plot in a nicer way.. pretty much always. 
 
 
 # Using ggthemes package (there are more in the package)
@@ -1295,6 +1295,8 @@ ggplot2::ggplot(data = students_table, mapping = aes(axis1 = groupid, axis2 = ge
 #####################################################################################################
 ######################################### Animation series ##########################################
 #####################################################################################################
+
+############### gganimate ###############
 library(gganimate)
 library(gifski)
 library(transformr)
@@ -1407,4 +1409,27 @@ don %>%
                 y = "Number of babies born") +
   hrbrthemes::theme_ft_rc() +
   gganimate::transition_reveal(year)
+
+
+############### plotly ###############
+
+#sample data
+cel <- read_csv(url("https://www.dropbox.com/s/4ebgnkdhhxo5rac/cel_volden_wiseman%20_coursera.csv?raw=1"))
+cel %>% 
+  dplyr::mutate(Party = recode(dem, "1" = "Democrat", "0" = "Republican")) -> cel
+
+# plotly animation 
+
+plotly::ggplotly(
+ggplot2::ggplot(data = cel, mapping = aes(x = seniority, 
+                                          y = les, 
+                                          color = Party, 
+                                          frame = year,             # this adds the animation
+                                          ids=thomas_name)) +       # this adds the object consistency
+  ggplot2::geom_point() +
+  ggplot2::labs(x = "Seniority", y = "Leg. Effectiveness") +
+  ggplot2::scale_color_manual(values = c("blue", "red"))
+)
+
+
 

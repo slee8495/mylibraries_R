@@ -148,6 +148,8 @@ library(gifski)
 library(transformr)
 library(esquisse)
 library(modeldata)
+library(babynames)
+library(hrbrthemes)
 
 
 # Shiny Packages

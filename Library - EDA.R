@@ -1140,6 +1140,11 @@ ggplot2::ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
 ################################################## ggplot2::theme()  series #######################################
 ###################################################################################################################
 
+library(hrbrthemes) # there are many good themes here
+library(ggthemes)
+
+
+
 # Using ggthemes package (there are more in the package)
 ggplot2::ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class))+
   ggplot2::geom_point()+
@@ -1296,6 +1301,9 @@ library(transformr)
 
 # Saving animated visual
 gganimate::anim_save("test.gif", animation = anim3)
+gganimate::anim_save("287-smooth-animation-with-tweenr.gif")
+
+
 
 # gganimate::transition_states (Using same variable as your xaxis)
 
@@ -1382,4 +1390,21 @@ ggplot2::ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
   gganimate::transition_time(year) +
   gganimate::ease_aes("linear")
 
+
+# Transition Reveal
+# for data sample
+library(babynames)
+library(hrbrthemes)
+don <- babynames %>% 
+  dplyr::filter(name %in% c("Ashley", "Patricia", "Helen")) %>%
+  dplyr::filter(sex=="F")
+
+don %>%
+  ggplot2::ggplot(mapping = aes(x = year, y = n, group = name, color = name)) +
+  ggplot2::geom_line() +
+  ggplot2::geom_point() +
+  ggplot2::labs(title = "Popularity of American names in the previous 30 years",
+                y = "Number of babies born") +
+  hrbrthemes::theme_ft_rc() +
+  gganimate::transition_reveal(year)
 

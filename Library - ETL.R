@@ -180,6 +180,10 @@ shipdate_changed %>%
   dplyr::filter(between(Ship_date, as.POSIXct("2021-05-01"), as.POSIXct("2022-04-30"))) %>% 
   dplyr::filter(between(Ship_date, as.Date("2021-05-01"), as.Date("2022-04.30")))
 
+# dplyr::select, dplyr::rename all at once, do it simultaneously
+data %>% 
+  dplyr::select(new_name = original_name)
+
 
 # Transform to Percentage ----
 Number_of_plt_count_lessthan1 / Total_number_of_Sku -> Percentage

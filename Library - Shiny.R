@@ -234,7 +234,42 @@ shinyApp(ui, server)
 
 
 ###############################################################################################################
+##################################### Shiny with dplyr, ggplot2 ###############################################
 ###############################################################################################################
-###############################################################################################################
+
+# you need to have the data variable in your enviornment. 
+
+# Define UI for application that draws a figure
+ui <- fluidPage(
+  titlePanel("Ideology in Congress"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("my_cong",
+                  "Congress:",
+                  min = 93,
+                  max = 114,
+                  value = 93)
+    ),
+    mainPanel(
+      plotOutput("congress_distplot")
+    )
+  )
+)
+
+server <- function(input, output) {
+  
+  output$congress_distplot <- renderPlot({
+    ggplot2::ggplot(data = dplyr::filter(data = dat, Congress == input$my_cong),  # here: filter used accordingly in fluidPage
+                    mapping = aes(x = Ideology, color = Party, fill = Party)) +
+      ggplot2::geom_density(alpha = 0.5) +
+      ggplot2::xlim(-1.5, 1.5) +
+      ggplot2::labs(x = "Ideology - Nominate Score", y = "Density") +
+      ggplot2::scale_fill_manual(values = c("blue", "red")) +
+      ggplot2::scale_color_manual(values = c("blue", "red"))
+  })
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)
 
 

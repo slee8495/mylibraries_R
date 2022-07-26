@@ -379,6 +379,9 @@ data %>%
   dplyr::arrange(desc(col_name)) %>% 
   dplyr::slice_head(n = 10)
 
+# in R, rowSums by the condition (sum in a data.frame version)
+dplyr::mutate(Balance_Hold = rowSums(across(.cols = ends_with("Hold"))))
+
 
 ################################################# Pivot ############################################
 # Pivot Using reshape2 (Pivot) ----

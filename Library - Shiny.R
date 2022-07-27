@@ -237,6 +237,8 @@ shinyApp(ui, server)
 ##################################### Shiny with dplyr, ggplot2 ###############################################
 ###############################################################################################################
 
+### 1
+
 # you need to have the data variable in your enviornment. 
 
 # Define UI for application that draws a figure
@@ -273,3 +275,43 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 
 
+
+### 2
+
+# sample data in Data vizualization JHU, course 4 - week 1
+dat <- read_csv("Practice data for publishing.csv")
+
+# Define UI for application
+ui <- fluidPage(
+  sidebarLayout(
+    sidebarPanel(
+      checkboxGroupInput(
+        inputId = "checked_groups",
+        label = "Which groups do you want to display?",
+        choices = c("a", "b", "c"),
+        selected = c("a", "b", "c")
+      )
+    ),
+    mainPanel(
+      plotOutput("scatter")
+    )
+  )
+)
+
+
+# Define server logic 
+server <- function(input, output) {
+  
+  output$scatter<-renderPlot({
+    
+    plot_dat <- dplyr::filter(dat, Group %in% input$checked_groups)
+    
+    ggplot2::ggplot(dat = plot_dat, mapping = aes(x = varX, y = varY, color = Group)) + 
+      geom_point()
+  }
+  )
+  
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)

@@ -132,6 +132,23 @@ dplyr::mutate(rate = n / population * 10000)
 
 rm(list = ls())
 
+
+# The simplest way to create a data frame using tibble
+# 1
+tibble::tibble(
+  x = 1:5,
+  y = 1, 
+  z = x ^ 2 + y
+)
+
+# 2 
+tibble::tribble(
+  ~x, ~y, ~z,
+  #--/--/----
+  "a", 2, 3.6,
+  "b", 1, 8.5
+)
+
 # expand.grid   -- Possible combination combine everything with two variables. 
 expand.grid(height = seq(60, 80, 5), weight = seq(100, 300, 50),
             sex = c("Male","Female"))

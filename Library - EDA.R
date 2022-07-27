@@ -817,6 +817,11 @@ treemap::treemap(diamonds,
                  inflate.labels = TRUE)  # font size being affected by the rectangles size
 
 
+# geom_rug  (How to elaborate your x, y axis (barcode looking frequency))
+ggplot2::ggplot(data = mtcars, mapping = aes(x = mpg, y = disp)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_rug(position = "jitter", size = 0.2)
+
 ###################################################################################################################
 ######################################################### map series ##############################################
 ###################################################################################################################

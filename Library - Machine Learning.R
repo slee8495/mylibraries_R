@@ -895,3 +895,26 @@ net_2 <- neuralnet::neuralnet(AND + OR ~ Var1 + Var2 + Var3, data = binary.data_
 plot(net_2, rep = "best")
 
 
+###################################################################################################################
+######################################### Customer Segmentation (K-Means) #########################################
+###################################################################################################################
+
+library(tidyverse)
+library(ggplot2)
+library(cluster)
+
+# sample data: Coursera Project Customer Segmentation using K-Means Clustering
+data <- read.csv("Mall_Customers.csv")
+readr::type_convert(data) -> data
+
+data %>% 
+  dplyr::rename(annual_income = "Annual.Income..k..",
+                spending_score = "Spending.Score..1.100.") -> data
+summary(data)
+
+
+# set seed
+set.seed(125)
+
+
+

@@ -95,6 +95,10 @@ data <- read_excel(".xlsx",
 # Change column name (remove all space) ----
 names(data_frame) <- stringr::str_replace_all(names(data_frame), c(" " = "_"))
 
+# Using janitor::clean_names()  this is good! it changes all smaller letter, replace space to "_"
+data %>% 
+  janitor::clean_names()
+
 
 # change column name ----
 

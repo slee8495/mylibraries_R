@@ -9,7 +9,7 @@ file.remove("../.xlsx")
 file.rename("..'.xlsx")
 
 # create folder in the dir
-dir.create("test")
+dir.create("example_data")
 
 ############################################ Read & Write files ############################################
 # How to read large file 
@@ -403,6 +403,19 @@ data %>%
 # in R, rowSums by the condition (sum in a data.frame version)
 dplyr::mutate(Balance_Hold = rowSums(across(.cols = ends_with("Hold"))))
 
+
+# forcats::fct_lump(forcats::fct_infreq(), n = 5)
+# when you want to spare top 5 in terms of counts as it is, and below everything label as "others"
+# example data: injuries
+load("C:/Users/sanle/OneDrive/R/Work/My Libraries/mylibraries/example_data/injuries.rds")
+
+injuries %>% 
+  dplyr::mutate(diag = forcats::fct_lump(forcats::fct_infreq(diag), n = 5)) -> a
+
+a %>% 
+  dplyr::group_by(diag) %>% 
+  dplyr::count() %>% 
+  dplyr::arrange(desc(n))
 
 ################################################# Pivot ############################################
 # Pivot Using reshape2 (Pivot) ----

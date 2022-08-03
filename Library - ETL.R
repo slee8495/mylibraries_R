@@ -821,13 +821,18 @@ diamonds %>%
 
 
 
-##################################### SQL Connection #############################
-# How to read SQL databse to R
-# 1.0 CONNECT TO SQL DB ----
+############################################################################################################################
+############################################## stringr::str series or string series ########################################
+############################################################################################################################
 
-con <- DBI::dbConnect(RSQLite::SQLite(),
-                      dbname = "mpg.sqlite")
+# change everything to lower case letters
+stringr::str_to_lower()
 
+# remove numbers in the text
+tm::removeNumbers()
+
+# remove punctuation (like, comma or dot)
+tm::removePunctuation()
 
 
 

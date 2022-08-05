@@ -839,6 +839,9 @@ diamonds %>%
 ############################################## stringr::str series or string series ########################################
 ############################################################################################################################
 
+# example data
+load("C:/Users/sanle/OneDrive/R/Work/My Libraries/mylibraries/example_data/complaints_train.rds")
+
 # change everything to lower case letters
 stringr::str_to_lower()
 
@@ -848,7 +851,10 @@ tm::removeNumbers()
 # remove punctuation (like, comma or dot)
 tm::removePunctuation()
 
+# remove new line in the text
+mutate(complaint = gsub("\n", " ", complaint))
 
-
+# remove tab in the text
+mutate(complaint = gsub("\t", " ", complaint))
 
 

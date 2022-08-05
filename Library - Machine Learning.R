@@ -904,17 +904,52 @@ library(ggplot2)
 library(cluster)
 
 # sample data: Coursera Project Customer Segmentation using K-Means Clustering
-data <- read.csv("Mall_Customers.csv")
-readr::type_convert(data) -> data
+# example data
+load("C:/Users/sanle/OneDrive/R/Work/My Libraries/mylibraries/example_data/mall_customers.rds")
 
-data %>% 
+readr::type_convert(mall_customers) -> mall_customers
+
+mall_customers %>% 
   dplyr::rename(annual_income = "Annual.Income..k..",
-                spending_score = "Spending.Score..1.100.") -> data
-summary(data)
+                spending_score = "Spending.Score..1.100.") -> mall_customers
+summary(mall_customers)
 
 
 # set seed
 set.seed(125)
 
+## Get the optimal number of clusters  
+# this will tell you how many clusters is the optimal point (look for consistency)
+# In this case, 6 is the most ideal cluster numbers
+stat_gap <- cluster::clusGap(mall_customers[, 3:5], FUN = kmeans, nstart = 25,
+                             K.max = 10, B = 50)
+
+plot(stat_gap)
+
+
+## Create the customer clusters with KMeans
+k6 <- kmeans(mall_customers[, 3:5], 6, iter.max = 100, nstart = 50,
+             algorithm = "Lloyd")   # 6 is figured right above
+
+## show the six KMeans clusters
+cluster::clusplot(mall_customers, k6$cluster, color=TRUE, shade=TRUE, labels=0, lines=0)
+
+## Perform Principal Component Analysis
+pcclust <- prcomp(mall_customers[, 3:5], scale = FALSE)
+summary(pcclust)
+
+## Apply the PCA model on the data
+pcclust$rotation[, 1:2]
+
+
+## Create a plot of the customers segments
+ggplot2::ggplot(data = mall_customers, mapping = aes(x = annual_income , y = spending_score)) + 
+  ggplot2::geom_point(stat = "identity", mapping = aes(color = as.factor(k6$cluster))) +
+  ggplot2::scale_color_discrete(name = NULL,
+                                breaks=c("1", "2", "3", "4", "5", "6"),
+                                labels=c("Cluster 1", "Cluster 2", "Cluster 3",
+                                         "Cluster 4", "Cluster 5", "Cluster 6")) +
+  ggplot2::labs(title = "Segments of Mall Customers", 
+                subtitle = "Using K-means Clustering")
 
 

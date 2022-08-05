@@ -236,7 +236,8 @@ substr(temp_item, nchar(temp_item)-2, nchar(temp_item))
 
 
 # Left formula in R ----
-stringr::str_sub(1, 5) # 1 means start point, # 5 means end point. 
+# This could be start from 1 or 3 or 5, if there's certain rule in the data, this could be right formula as well
+stringr::str_sub(1, 5) # 1 means start point, # 5 means end point.  
 
 # get max() by row ----
 

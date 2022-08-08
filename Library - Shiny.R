@@ -315,3 +315,70 @@ server <- function(input, output) {
 
 # Run the application 
 shinyApp(ui = ui, server = server)
+
+
+
+
+###############################################################################################################
+################################################ Text formatting ##############################################
+###############################################################################################################
+
+# examples
+# shiny function	HTML5 equivalent	creates
+# p	<p>	A paragraph of text
+# h1	<h1>	A first level header
+# h2	<h2>	A second level header
+# h3	<h3>	A third level header
+# h4	<h4>	A fourth level header
+# h5	<h5>	A fifth level header
+# h6	<h6>	A sixth level header
+# a	<a>	A hyper link
+# br	<br>	A line break (e.g. a blank line)
+# div	<div>	A division of text with a uniform style
+# span	<span>	An in-line division of text with a uniform style
+# pre	<pre>	Text ‘as is’ in a fixed width font
+# code	<code>	A formatted block of code
+# img	<img>	An image
+# strong	<strong>	Bold text
+# em	<em>	Italicized text
+# HTML	 	Directly passes a character string as HTML code
+
+# example using h
+ui <- fluidPage(
+  titlePanel("My Shiny App"),
+  sidebarLayout(
+    sidebarPanel(),
+    mainPanel(
+      h1("First level title"),
+      h2("Second level title"),
+      h3("Third level title"),
+      h4("Fourth level title"),
+      h5("Fifth level title"),
+      h6("Sixth level title")
+    )
+  )
+)
+
+
+# example using formatting texting
+ui <- fluidPage(
+  titlePanel("My Shiny App"),
+  sidebarLayout(
+    sidebarPanel(),
+    mainPanel(
+      p("p creates a paragraph of text."),
+      p("A new p() command starts a new paragraph. Supply a style attribute to change the format of the entire paragraph.", style = "font-family: 'times'; font-si16pt"),
+      strong("strong() makes bold text."),
+      em("em() creates italicized (i.e, emphasized) text."),
+      br(),
+      code("code displays your text similar to computer code"),
+      div("div creates segments of text with a similar style. This division of text is all blue because I passed the argument 'style = color:blue' to div", style = "color:blue"),
+      br(),
+      p("span does the same thing as div, but it works with",
+        span("groups of words", style = "color:blue"),
+        "that appear inside a paragraph.")
+    )
+  )
+)
+
+

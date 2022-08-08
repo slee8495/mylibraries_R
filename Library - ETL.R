@@ -857,6 +857,9 @@ tm::removePunctuation()
 # remove new line in the text
 mutate(complaint = gsub("\n", " ", complaint))
 
+# remove unnecessary spaces
+tm::stripWhitespace()
+
 # remove tab in the text
 mutate(complaint = gsub("\t", " ", complaint))
 

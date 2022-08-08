@@ -11,6 +11,23 @@ server <- function(input, output, session){
 }
 
 
+############################################### Widgets examples ########################################
+
+# actionButton	Action Button
+# checkboxGroupInput	A group of check boxes
+# checkboxInput	A single check box
+# dateInput	A calendar to aid date selection
+# dateRangeInput	A pair of calendars for selecting a date range
+# fileInput	A file upload control wizard
+# helpText	Help text that can be added to an input form
+# numericInput	A field to enter numbers
+# radioButtons	A set of radio buttons
+# selectInput	A box with choices to select from
+# sliderInput	A slider bar
+# submitButton	A submit button
+# textInput	A field to enter text
+
+
 ###############################################    UI    ################################################
 ui <- fluidPage(
   title = "Data Explorer",
@@ -94,6 +111,17 @@ actionButton("eat", "Eat me!", class = "btn-block")
 
 
 
+############################################# Output examples ################################################
+
+# dataTableOutput	DataTable
+# htmlOutput	raw HTML
+# imageOutput	image
+# plotOutput	plot
+# tableOutput	table
+# textOutput	text
+# uiOutput	raw HTML
+# verbatimTextOutput	text
+
 
 ################################################### Output ###################################################
 ############################################ match with server ###############################################
@@ -118,6 +146,18 @@ dataTableOutput("dynamic_2")
 
 # plotOutput (pair with renderPlot)
 plotOutput("plot", width = "400px")
+
+
+
+#################################### Rendering examples ##############################################
+
+# renderDataTable	DataTable
+# renderImage	images (saved as a link to a source file)
+# renderPlot	plots
+# renderPrint	any printed output
+# renderTable	data frame, matrix, other table like structures
+# renderText	character strings
+# renderUI	a Shiny tag object or HTML
 
 
 ######################################## server #######################################
@@ -380,5 +420,27 @@ ui <- fluidPage(
     )
   )
 )
+
+
+
+
+
+
+###############################################################################################################
+################################################ Inserting Image ##############################################
+###############################################################################################################
+
+ui <- fluidPage(
+  titlePanel("My Shiny App"),
+  sidebarLayout(
+    sidebarPanel(),
+    mainPanel(
+      img(src = "rstudio.png", height = 140, width = 400)
+    )
+  )
+)
+
+
+
 
 

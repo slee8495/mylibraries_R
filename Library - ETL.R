@@ -230,6 +230,9 @@ df <- data.frame(x = c('John, Mae', 'Maude, Lebowski', 'Mia, Amy', 'Andy, James'
 df %>% 
   tidyr::separate(x, c('Name', 'Surname'))
 
+# Separate data by certain rule
+tidyr::separate(col, c("1", "2", "3", "4", "5"), sep = "~")
+
 # right formula in R ----
 ssmetrics_final$temp -> temp_item
 substr(temp_item, nchar(temp_item)-2, nchar(temp_item))

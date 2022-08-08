@@ -151,6 +151,7 @@ library(esquisse)
 library(modeldata)
 library(babynames)
 library(hrbrthemes)
+library(UScensus2010)
 
 
 # Shiny Packages

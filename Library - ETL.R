@@ -601,6 +601,20 @@ data %>%
 sample %>% 
   dplyr::mutate(date = format(as.Date(date), "%m/%d/%y")) 
 
+# How to change date type from factor to date 202201 format
+sample %>% 
+  dplyr::mutate(date = as.factor(date),
+                date = lubridate::ym(date))
+
+# How to get the first date, last date, previouse or next month first, last date (play with +1 or -1)
+sample %>% 
+  dplyr::mutate(date = lubridate::ceiling_date(date, unit = "month") -1)
+
+sample %>% 
+  dplyr::mutate(date = lubridate::floor_date(date, unit = "month") -1)
+
+
+
 Year 
 # %Y - 4 digits
 # %y - 2 digits

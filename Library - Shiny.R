@@ -95,90 +95,64 @@ server <- function(input, output, session){
 # insertTab() prependTab() appendTab() removeTab(): Dynamically insert/remove a tabPanel
 # showTab() hideTab(): Dynamically hide/show a tabPanel
 # updateTextInput(): Change the value of a text input on the client
-# updateTextAreaInput()
-# Change the value of a textarea input on the client
-# updateQueryString()
-# Update URL in browser's location bar
-# getQueryString() getUrlHash()
-# Get the query string / hash component from the URL
-# UI Outputs
+# updateTextAreaInput(): Change the value of a textarea input on the client
+# updateQueryString(): Update URL in browser's location bar
+# getQueryString() getUrlHash(): Get the query string / hash component from the URL
+
+
+
+################################### UI Outputs ##############################
 # Functions for creating user interface elements that, in conjunction with rendering functions, display different kinds of output from your application.
-# 
-# htmlOutput() uiOutput()
-# Create an HTML output element
-# imageOutput() plotOutput()
-# Create an plot or image output element
-# outputOptions()
-# Set options for an output object.
-# tableOutput() dataTableOutput()
-# Create a table output element
-# textOutput() verbatimTextOutput()
-# Create a text output element
-# downloadButton() downloadLink()
-# Create a download button or link
-# Progress
-# Reporting progress (object-oriented API)
-# withProgress() setProgress() incProgress()
-# Reporting progress (functional API)
-# modalDialog()
-# Create a modal dialog UI
-# urlModal()
-# Generate a modal dialog that displays a URL
-# showModal() removeModal()
-# Show or remove a modal dialog
-# showNotification() removeNotification()
-# Show or remove a notification
-# Interface builder functions
+
+# htmlOutput() uiOutput(): Create an HTML output element
+# imageOutput() plotOutput(): Create an plot or image output element
+# outputOptions(): Set options for an output object.
+# tableOutput() dataTableOutput(): Create a table output element
+# textOutput() verbatimTextOutput(): Create a text output element
+# downloadButton() downloadLink(): Create a download button or link
+
+# Progress: Reporting progress (object-oriented API)
+# withProgress() setProgress() incProgress(): Reporting progress (functional API)
+# modalDialog(): Create a modal dialog UI
+# urlModal(): Generate a modal dialog that displays a URL
+# showModal() removeModal(): Show or remove a modal dialog
+# showNotification() removeNotification(): Show or remove a notification
+
+
+
+################################### Interface builder functions ##############################
 # A sub-library for writing HTML using R functions. These functions form the foundation on which the higher level user interface functions are built, and can also be used in your Shiny UI to provide custom HTML, CSS, and JavaScript.
-# 
-# tags p() h1() h2() h3() h4() h5() h6() a() br() div() span() pre() code() img() strong() em() hr()
-# HTML Builder Functions
-# HTML()
-# Mark Characters as HTML
-# includeHTML() includeText() includeMarkdown() includeCSS() includeScript()
-# Include Content From a File
-# singleton() is.singleton()
-# Include content only once
-# tagList() tagAppendAttributes() tagHasAttribute() tagGetAttribute() tagAppendChild() tagAppendChildren() tagSetChildren() tag()
-# HTML Tag Object
-# validateCssUnit()
-# Validate proper CSS formatting of a unit
-# withTags()
-# Evaluate an expression using tags
-# htmlTemplate()
-# Process an HTML template
-# bootstrapLib()
-# Bootstrap libraries
-# suppressDependencies()
-# Suppress web dependencies
-# insertUI() removeUI()
-# Insert and remove UI objects
-# markdown()
-# Insert inline Markdown
-# Rendering functions
-# Functions that you use in your application’s server side code, assigning them to outputs that appear in your user interface.
-# 
-# renderPlot()
-# Plot Output
-# renderCachedPlot()
-# Plot output with cached images
-# renderText()
-# Text Output
-# renderPrint()
-# Printable Output
-# renderDataTable()
-# Table output with the JavaScript library DataTables
-# renderImage()
-# Image file output
-# renderTable()
-# Table Output
-# renderUI()
-# UI Output
-# downloadHandler()
-# File Downloads
-# createRenderFunction()
-# Implement render functions
-# Reactive programming
+ 
+# tags p() h1() h2() h3() h4() h5() h6() a() br() div() span() pre() code() img() strong() em() hr(): HTML Builder Functions
+# HTML(): Mark Characters as HTML
+# includeHTML() includeText() includeMarkdown() includeCSS() includeScript(): Include Content From a File
+# singleton() is.singleton(): Include content only once
+# tagList() tagAppendAttributes() tagHasAttribute() tagGetAttribute() tagAppendChild() tagAppendChildren() tagSetChildren() tag(): HTML Tag Object
+# validateCssUnit(): Validate proper CSS formatting of a unit
+# withTags(): Evaluate an expression using tags
+# htmlTemplate(): Process an HTML template
+# bootstrapLib(): Bootstrap libraries
+# suppressDependencies(): Suppress web dependencies
+# insertUI() removeUI(): Insert and remove UI objects
+# markdown(): Insert inline Markdown
+
+
+################################### Rendering functions ##############################
+# Functions that you use in your application’s server side code, assigning them to outputs that appear in your user interface
+
+# renderPlot(): Plot Output
+# renderCachedPlot(): Plot output with cached images
+# renderText(): Text Output
+# renderPrint(): Printable Output
+# renderDataTable(): Table output with the JavaScript library DataTables
+# renderImage(): Image file output
+# renderTable(): Table Output
+# renderUI(): UI Output
+# downloadHandler(): File Downloads
+# createRenderFunction(): Implement render functions
+
+
+################################### Reactive Programming ##############################
 # A sub-library that provides reactive programming facilities for R.
 # 
 # reactive() is.reactive()
@@ -367,6 +341,14 @@ server <- function(input, output, session){
 
 
 
+
+
+
+
+#########################################################################################################
+#########################################################################################################
+#########################################################################################################
+#########################################################################################################
 
 ###############################################    UI    ################################################
 ui <- fluidPage(

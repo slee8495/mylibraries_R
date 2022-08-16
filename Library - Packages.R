@@ -152,6 +152,9 @@ library(modeldata)
 library(babynames)
 library(hrbrthemes)
 library(UScensus2010)
+library(glmnet)   # for machine learning
+library(textrecipes)  
+library(themis)
 
 
 # Shiny Packages

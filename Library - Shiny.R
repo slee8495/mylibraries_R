@@ -10,8 +10,9 @@ server <- function(input, output, session){
   
 }
 
-
+#########################################################################################################
 ############################################### Widgets examples ########################################
+#########################################################################################################
 
 # actionButton	Action Button
 # checkboxGroupInput	A group of check boxes
@@ -26,6 +27,345 @@ server <- function(input, output, session){
 # sliderInput	A slider bar
 # submitButton	A submit button
 # textInput	A field to enter text
+
+
+
+
+#########################################################################################################
+############################################# Function Refrence #########################################
+#########################################################################################################
+
+
+################################### UI Layout ##############################
+# Functions for laying out the user interface for your application.
+
+# absolutePanel() fixedPanel(): Panel with absolute positioning
+# bootstrapPage() basicPage(): Create a Bootstrap page
+# column(): Create a column within a UI definition
+# conditionalPanel(): Conditional Panel
+# fillPage(): Create a page that fills the window
+# fillRow() fillCol(): Flex Box-based row/column layouts
+# fixedPage() fixedRow(): Create a page with a fixed layout
+# fluidPage() fluidRow(): Create a page with fluid layout
+# helpText(): Create a help text element
+# icon(): Create an icon
+# navbarPage() navbarMenu(): Create a page with a top level navigation bar
+# navlistPanel(): Create a navigation list panel
+# sidebarLayout() sidebarPanel() mainPanel(): Layout a sidebar and main area
+# tabPanel() tabPanelBody(): Create a tab panel
+# tabsetPanel(): Create a tabset panel
+# titlePanel(): Create a panel containing an application title.
+# inputPanel(): Input panel
+# flowLayout(): Flow layout
+# splitLayout(): Split layout
+# verticalLayout(): Lay out UI elements vertically
+# wellPanel(): Create a well panel
+# withMathJax(): Load the MathJax library and typeset math expressions
+
+
+################################### UI Inputs ##############################
+# Functions for creating user interface elements that prompt the user for input values or interaction.
+
+# actionButton() actionLink(): Action button/link
+# checkboxGroupInput(): Checkbox Group Input Control
+# checkboxInput(): Checkbox Input Control
+# dateInput(): Create date input
+# dateRangeInput(): Create date range input
+# fileInput(): File Upload Control
+# numericInput(): Create a numeric input control
+# radioButtons(): Create radio buttons
+# selectInput() selectizeInput(): Create a select list input control
+# varSelectInput() varSelectizeInput(): Select variables from a data frame
+# sliderInput() animationOptions(): Slider Input Widget
+# submitButton(): Create a submit button
+# textInput(): Create a text input control
+# textAreaInput(): Create a textarea input control
+# passwordInput(): Create a password input control
+# modalButton(): Create a button for a modal dialog
+# updateActionButton() updateActionLink(): Change the label or icon of an action button on the client
+# updateCheckboxGroupInput(): Change the value of a checkbox group input on the client
+# updateCheckboxInput(): Change the value of a checkbox input on the client
+# updateDateInput(): Change the value of a date input on the client
+# updateDateRangeInput(): Change the start and end values of a date range input on the client
+# updateNumericInput(): Change the value of a number input on the client
+# updateRadioButtons(): Change the value of a radio input on the client
+# updateSelectInput() updateSelectizeInput() updateVarSelectInput() updateVarSelectizeInput(): Change the value of a select input on the client
+# updateSliderInput(): Update Slider Input Widget
+# updateTabsetPanel() updateNavbarPage() updateNavlistPanel(): Change the selected tab on the client
+# insertTab() prependTab() appendTab() removeTab(): Dynamically insert/remove a tabPanel
+# showTab() hideTab(): Dynamically hide/show a tabPanel
+# updateTextInput(): Change the value of a text input on the client
+# updateTextAreaInput()
+# Change the value of a textarea input on the client
+# updateQueryString()
+# Update URL in browser's location bar
+# getQueryString() getUrlHash()
+# Get the query string / hash component from the URL
+# UI Outputs
+# Functions for creating user interface elements that, in conjunction with rendering functions, display different kinds of output from your application.
+# 
+# htmlOutput() uiOutput()
+# Create an HTML output element
+# imageOutput() plotOutput()
+# Create an plot or image output element
+# outputOptions()
+# Set options for an output object.
+# tableOutput() dataTableOutput()
+# Create a table output element
+# textOutput() verbatimTextOutput()
+# Create a text output element
+# downloadButton() downloadLink()
+# Create a download button or link
+# Progress
+# Reporting progress (object-oriented API)
+# withProgress() setProgress() incProgress()
+# Reporting progress (functional API)
+# modalDialog()
+# Create a modal dialog UI
+# urlModal()
+# Generate a modal dialog that displays a URL
+# showModal() removeModal()
+# Show or remove a modal dialog
+# showNotification() removeNotification()
+# Show or remove a notification
+# Interface builder functions
+# A sub-library for writing HTML using R functions. These functions form the foundation on which the higher level user interface functions are built, and can also be used in your Shiny UI to provide custom HTML, CSS, and JavaScript.
+# 
+# tags p() h1() h2() h3() h4() h5() h6() a() br() div() span() pre() code() img() strong() em() hr()
+# HTML Builder Functions
+# HTML()
+# Mark Characters as HTML
+# includeHTML() includeText() includeMarkdown() includeCSS() includeScript()
+# Include Content From a File
+# singleton() is.singleton()
+# Include content only once
+# tagList() tagAppendAttributes() tagHasAttribute() tagGetAttribute() tagAppendChild() tagAppendChildren() tagSetChildren() tag()
+# HTML Tag Object
+# validateCssUnit()
+# Validate proper CSS formatting of a unit
+# withTags()
+# Evaluate an expression using tags
+# htmlTemplate()
+# Process an HTML template
+# bootstrapLib()
+# Bootstrap libraries
+# suppressDependencies()
+# Suppress web dependencies
+# insertUI() removeUI()
+# Insert and remove UI objects
+# markdown()
+# Insert inline Markdown
+# Rendering functions
+# Functions that you use in your application’s server side code, assigning them to outputs that appear in your user interface.
+# 
+# renderPlot()
+# Plot Output
+# renderCachedPlot()
+# Plot output with cached images
+# renderText()
+# Text Output
+# renderPrint()
+# Printable Output
+# renderDataTable()
+# Table output with the JavaScript library DataTables
+# renderImage()
+# Image file output
+# renderTable()
+# Table Output
+# renderUI()
+# UI Output
+# downloadHandler()
+# File Downloads
+# createRenderFunction()
+# Implement render functions
+# Reactive programming
+# A sub-library that provides reactive programming facilities for R.
+# 
+# reactive() is.reactive()
+# Create a reactive expression
+# observe()
+# Create a reactive observer
+# observeEvent() eventReactive()
+# Event handler
+# reactiveVal()
+# Create a (single) reactive value
+# reactiveValues()
+# Create an object for storing reactive values
+# reactiveValuesToList()
+# Convert a reactivevalues object to a list
+# is.reactivevalues()
+# Checks whether an object is a reactivevalues object
+# isolate()
+# Create a non-reactive scope for an expression
+# invalidateLater()
+# Scheduled Invalidation
+# debounce() throttle()
+# Slow down a reactive expression with debounce/throttle
+# reactlog() reactlogShow() showReactLog() reactlogReset()
+# Reactive Log Visualizer
+# makeReactiveBinding()
+# Make a reactive variable
+# reactiveFileReader()
+# Reactive file reader
+# reactivePoll()
+# Reactive polling
+# reactiveTimer()
+# Timer
+# getDefaultReactiveDomain() withReactiveDomain() onReactiveDomainEnded()
+# Reactive domains
+# freezeReactiveVal() freezeReactiveValue()
+# Freeze a reactive value
+# Boilerplate
+# Functions that are required boilerplate in ui.R and server.R.
+# 
+# shinyUI()
+# Create a Shiny UI handler
+# shinyServer()
+# Define Server Functionality
+# Running
+# Functions that are used to run or stop Shiny applications.
+# 
+# runApp()
+# Run Shiny Application
+# runGadget()
+# Run a gadget
+# runExample()
+# Run Shiny Example Applications
+# runUrl() runGist() runGitHub()
+# Run a Shiny application from a URL
+# stopApp()
+# Stop the currently running Shiny app
+# paneViewer() dialogViewer() browserViewer()
+# Viewer options
+# isRunning()
+# Check whether a Shiny application is running
+# loadSupport()
+# Load an app's supporting R files
+# Bookmarking state
+# Functions that are used for bookmarking and restoring state.
+# 
+# bookmarkButton()
+# Create a button for bookmarking/sharing
+# enableBookmarking()
+# Enable bookmarking for a Shiny application
+# setBookmarkExclude()
+# Exclude inputs from bookmarking
+# showBookmarkUrlModal()
+# Display a modal dialog for bookmarking
+# onBookmark() onBookmarked() onRestore() onRestored()
+# Add callbacks for Shiny session bookmarking events
+# Extending Shiny
+# Functions that are intended to be called by third-party packages that extend Shiny.
+# 
+# createWebDependency()
+# Create a web dependency
+# addResourcePath() resourcePaths() removeResourcePath()
+# Resource Publishing
+# registerInputHandler()
+# Register an Input Handler
+# removeInputHandler()
+# Deregister an Input Handler
+# markRenderFunction()
+# Mark a function as a render function
+# Utility functions
+# Miscellaneous utilities that may be useful to advanced users or when extending Shiny.
+# 
+# shinyAppTemplate()
+# Generate a Shiny application from a template
+# req() isTruthy()
+# Check for required values
+# validate() need()
+# Validate input values and other conditions
+# session
+# Session object
+# getShinyOption() shinyOptions()
+# Get or set Shiny options
+# safeError()
+# Declare an error safe for the user to see
+# onFlush() onFlushed() onSessionEnded()
+# Add callbacks for Shiny session events
+# restoreInput()
+# Restore an input value
+# applyInputHandlers()
+# Apply input handlers to raw input values
+# exprToFunction()
+# Convert an expression to a function
+# installExprFunction()
+# Install an expression as a function
+# parseQueryString()
+# Parse a GET query string from a URL
+# getCurrentOutputInfo()
+# Get output information
+# plotPNG()
+# Run a plotting function and save the output as a PNG
+# sizeGrowthRatio()
+# Create a sizing function that grows at a given ratio
+# exportTestValues()
+# Register expressions for export in test mode
+# setSerializer()
+# Add a function for serializing an input before bookmarking application state
+# snapshotExclude()
+# Mark an output to be excluded from test snapshots
+# snapshotPreprocessInput()
+# Add a function for preprocessing an input before taking a test snapshot
+# snapshotPreprocessOutput()
+# Add a function for preprocessing an output before taking a test snapshot
+# markOutputAttrs()
+# Mark a render function with attributes that will be used by the output
+# repeatable()
+# Make a random number generator repeatable
+# shinyDeprecated()
+# Print message for deprecated functions in Shiny
+# serverInfo()
+# Collect information about the Shiny Server environment
+# onStop()
+# Run code after an application or session ends
+# diskCache()
+# Create a disk cache object
+# memoryCache()
+# Create a memory cache object
+# key_missing() is.key_missing()
+# A missing key object
+# Plot interaction
+# Functions related to interactive plots
+# 
+# brushedPoints() nearPoints()
+# Find rows of data selected on an interactive plot.
+# brushOpts()
+# Create an object representing brushing options
+# clickOpts()
+# Create an object representing click options
+# dblclickOpts()
+# Create an object representing double-click options
+# hoverOpts()
+# Create an object representing hover options
+# Modules
+# Functions for modularizing Shiny apps
+# 
+# NS() ns.sep
+# Namespaced IDs for inputs/outputs
+# moduleServer()
+# Shiny modules
+# callModule()
+# Invoke a Shiny module
+# Embedding
+# Functions that are intended for third-party packages that embed Shiny applications.
+# 
+# shinyApp() shinyAppDir() shinyAppFile()
+# Create a Shiny app object
+# maskReactiveContext()
+# Evaluate an expression without a reactive context
+# Testing
+# Functions intended for testing of Shiny components
+# 
+# runTests()
+# Runs the tests associated with this Shiny app
+# testServer()
+# Reactive testing for Shiny server functions and modules
+# MockShinySession
+# Mock Shiny Session
+
+
 
 
 ###############################################    UI    ################################################

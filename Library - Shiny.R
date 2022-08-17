@@ -154,155 +154,99 @@ server <- function(input, output, session){
 
 ################################### Reactive Programming ##############################
 # A sub-library that provides reactive programming facilities for R.
-# 
-# reactive() is.reactive()
-# Create a reactive expression
-# observe()
-# Create a reactive observer
-# observeEvent() eventReactive()
-# Event handler
-# reactiveVal()
-# Create a (single) reactive value
-# reactiveValues()
-# Create an object for storing reactive values
-# reactiveValuesToList()
-# Convert a reactivevalues object to a list
-# is.reactivevalues()
-# Checks whether an object is a reactivevalues object
-# isolate()
-# Create a non-reactive scope for an expression
-# invalidateLater()
-# Scheduled Invalidation
-# debounce() throttle()
-# Slow down a reactive expression with debounce/throttle
-# reactlog() reactlogShow() showReactLog() reactlogReset()
-# Reactive Log Visualizer
-# makeReactiveBinding()
-# Make a reactive variable
-# reactiveFileReader()
-# Reactive file reader
-# reactivePoll()
-# Reactive polling
-# reactiveTimer()
-# Timer
-# getDefaultReactiveDomain() withReactiveDomain() onReactiveDomainEnded()
-# Reactive domains
-# freezeReactiveVal() freezeReactiveValue()
-# Freeze a reactive value
-# Boilerplate
+
+# reactive() is.reactive(): Create a reactive expression
+# observe(): Create a reactive observer
+# observeEvent() eventReactive(): Event handler
+# reactiveVal(): Create a (single) reactive value
+# reactiveValues(): Create an object for storing reactive values
+# reactiveValuesToList(): Convert a reactivevalues object to a list
+# is.reactivevalues(): Checks whether an object is a reactivevalues object
+# isolate(): Create a non-reactive scope for an expression
+# invalidateLater(): Scheduled Invalidation
+# debounce() throttle(): Slow down a reactive expression with debounce/throttle
+# reactlog() reactlogShow() showReactLog() reactlogReset(): Reactive Log Visualizer
+# makeReactiveBinding(): Make a reactive variable
+# reactiveFileReader(): Reactive file reader
+# reactivePoll(): Reactive polling
+# reactiveTimer(): Timer
+# getDefaultReactiveDomain() withReactiveDomain() onReactiveDomainEnded(): Reactive domains
+# freezeReactiveVal() freezeReactiveValue(): Freeze a reactive value
+
+
+####################################### Boilerplate ###################################
 # Functions that are required boilerplate in ui.R and server.R.
-# 
-# shinyUI()
-# Create a Shiny UI handler
-# shinyServer()
-# Define Server Functionality
-# Running
+
+# shinyUI(): Create a Shiny UI handler
+# shinyServer(): Define Server Functionality
+
+
+########################################## Running ####################################
 # Functions that are used to run or stop Shiny applications.
-# 
-# runApp()
-# Run Shiny Application
-# runGadget()
-# Run a gadget
-# runExample()
-# Run Shiny Example Applications
-# runUrl() runGist() runGitHub()
-# Run a Shiny application from a URL
-# stopApp()
-# Stop the currently running Shiny app
-# paneViewer() dialogViewer() browserViewer()
-# Viewer options
-# isRunning()
-# Check whether a Shiny application is running
-# loadSupport()
-# Load an app's supporting R files
-# Bookmarking state
+
+# runApp(): Run Shiny Application
+# runGadget(): Run a gadget
+# runExample(): Run Shiny Example Applications
+# runUrl() runGist() runGitHub(): Run a Shiny application from a URL
+# stopApp(): Stop the currently running Shiny app
+# paneViewer() dialogViewer() browserViewer(): Viewer options
+# isRunning(): Check whether a Shiny application is running
+# loadSupport(): Load an app's supporting R files
+
+
+#################################### Bookmarking state #################################
 # Functions that are used for bookmarking and restoring state.
-# 
-# bookmarkButton()
-# Create a button for bookmarking/sharing
-# enableBookmarking()
-# Enable bookmarking for a Shiny application
-# setBookmarkExclude()
-# Exclude inputs from bookmarking
-# showBookmarkUrlModal()
-# Display a modal dialog for bookmarking
-# onBookmark() onBookmarked() onRestore() onRestored()
-# Add callbacks for Shiny session bookmarking events
-# Extending Shiny
+
+# bookmarkButton(): Create a button for bookmarking/sharing
+# enableBookmarking(): Enable bookmarking for a Shiny application
+# setBookmarkExclude(): Exclude inputs from bookmarking
+# showBookmarkUrlModal(): Display a modal dialog for bookmarking
+# onBookmark() onBookmarked() onRestore() onRestored(): Add callbacks for Shiny session bookmarking events
+
+##################################### Extending Shiny ###################################
 # Functions that are intended to be called by third-party packages that extend Shiny.
-# 
-# createWebDependency()
-# Create a web dependency
-# addResourcePath() resourcePaths() removeResourcePath()
-# Resource Publishing
-# registerInputHandler()
-# Register an Input Handler
-# removeInputHandler()
-# Deregister an Input Handler
-# markRenderFunction()
-# Mark a function as a render function
-# Utility functions
+
+# createWebDependency(): Create a web dependency
+# addResourcePath() resourcePaths() removeResourcePath(): Resource Publishing
+# registerInputHandler(): Register an Input Handler
+# removeInputHandler(): Deregister an Input Handler
+# markRenderFunction(): Mark a function as a render function
+
+#################################### Utility functions ###################################
 # Miscellaneous utilities that may be useful to advanced users or when extending Shiny.
-# 
-# shinyAppTemplate()
-# Generate a Shiny application from a template
-# req() isTruthy()
-# Check for required values
-# validate() need()
-# Validate input values and other conditions
-# session
-# Session object
-# getShinyOption() shinyOptions()
-# Get or set Shiny options
-# safeError()
-# Declare an error safe for the user to see
-# onFlush() onFlushed() onSessionEnded()
-# Add callbacks for Shiny session events
-# restoreInput()
-# Restore an input value
-# applyInputHandlers()
-# Apply input handlers to raw input values
-# exprToFunction()
-# Convert an expression to a function
-# installExprFunction()
-# Install an expression as a function
-# parseQueryString()
-# Parse a GET query string from a URL
-# getCurrentOutputInfo()
-# Get output information
-# plotPNG()
-# Run a plotting function and save the output as a PNG
-# sizeGrowthRatio()
-# Create a sizing function that grows at a given ratio
-# exportTestValues()
-# Register expressions for export in test mode
-# setSerializer()
-# Add a function for serializing an input before bookmarking application state
-# snapshotExclude()
-# Mark an output to be excluded from test snapshots
-# snapshotPreprocessInput()
-# Add a function for preprocessing an input before taking a test snapshot
-# snapshotPreprocessOutput()
-# Add a function for preprocessing an output before taking a test snapshot
-# markOutputAttrs()
-# Mark a render function with attributes that will be used by the output
-# repeatable()
-# Make a random number generator repeatable
-# shinyDeprecated()
-# Print message for deprecated functions in Shiny
-# serverInfo()
-# Collect information about the Shiny Server environment
-# onStop()
-# Run code after an application or session ends
-# diskCache()
-# Create a disk cache object
-# memoryCache()
-# Create a memory cache object
-# key_missing() is.key_missing()
-# A missing key object
-# Plot interaction
+
+# shinyAppTemplate(): Generate a Shiny application from a template
+# req() isTruthy(): Check for required values
+# validate() need(): Validate input values and other conditions
+# session: Session object
+# getShinyOption() shinyOptions(): Get or set Shiny options
+# safeError(): Declare an error safe for the user to see
+# onFlush() onFlushed() onSessionEnded(): Add callbacks for Shiny session events
+# restoreInput(): Restore an input value
+# applyInputHandlers(): Apply input handlers to raw input values
+# exprToFunction(): Convert an expression to a function
+# installExprFunction(): Install an expression as a function
+# parseQueryString(): Parse a GET query string from a URL
+# getCurrentOutputInfo(): Get output information
+# plotPNG(): Run a plotting function and save the output as a PNG
+# sizeGrowthRatio(): Create a sizing function that grows at a given ratio
+# exportTestValues(): Register expressions for export in test mode
+# setSerializer(): Add a function for serializing an input before bookmarking application state
+# snapshotExclude(): Mark an output to be excluded from test snapshots
+# snapshotPreprocessInput(): Add a function for preprocessing an input before taking a test snapshot
+# snapshotPreprocessOutput(): Add a function for preprocessing an output before taking a test snapshot
+# markOutputAttrs(): Mark a render function with attributes that will be used by the output
+# repeatable(): Make a random number generator repeatable
+# shinyDeprecated(): Print message for deprecated functions in Shiny
+# serverInfo(): Collect information about the Shiny Server environment
+# onStop(): Run code after an application or session ends
+# diskCache(): Create a disk cache object
+# memoryCache(): Create a memory cache object
+# key_missing() is.key_missing(): A missing key object
+
+############################################### Plot interaction ##################################
 # Functions related to interactive plots
-# 
+
 # brushedPoints() nearPoints()
 # Find rows of data selected on an interactive plot.
 # brushOpts()

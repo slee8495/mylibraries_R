@@ -247,41 +247,32 @@ server <- function(input, output, session){
 ############################################### Plot interaction ##################################
 # Functions related to interactive plots
 
-# brushedPoints() nearPoints()
-# Find rows of data selected on an interactive plot.
-# brushOpts()
-# Create an object representing brushing options
-# clickOpts()
-# Create an object representing click options
-# dblclickOpts()
-# Create an object representing double-click options
-# hoverOpts()
-# Create an object representing hover options
-# Modules
+# brushedPoints() nearPoints(): Find rows of data selected on an interactive plot.
+# brushOpts(): Create an object representing brushing options
+# clickOpts(): Create an object representing click options
+# dblclickOpts(): Create an object representing double-click options
+# hoverOpts(): Create an object representing hover options
+
+########################################### Modules ############################################
 # Functions for modularizing Shiny apps
-# 
-# NS() ns.sep
-# Namespaced IDs for inputs/outputs
-# moduleServer()
-# Shiny modules
-# callModule()
-# Invoke a Shiny module
-# Embedding
+ 
+# NS() ns.sep: Namespaced IDs for inputs/outputs
+# moduleServer(): Shiny modules
+# callModule(): Invoke a Shiny module
+
+########################################## Embedding ###########################################
 # Functions that are intended for third-party packages that embed Shiny applications.
-# 
-# shinyApp() shinyAppDir() shinyAppFile()
-# Create a Shiny app object
-# maskReactiveContext()
-# Evaluate an expression without a reactive context
-# Testing
+
+# shinyApp() shinyAppDir() shinyAppFile(): Create a Shiny app object
+# maskReactiveContext(): Evaluate an expression without a reactive context
+
+########################################## Testing #############################################
 # Functions intended for testing of Shiny components
-# 
-# runTests()
-# Runs the tests associated with this Shiny app
-# testServer()
-# Reactive testing for Shiny server functions and modules
-# MockShinySession
-# Mock Shiny Session
+
+# runTests(): Runs the tests associated with this Shiny app
+# testServer(): Reactive testing for Shiny server functions and modules
+# MockShinySession: Mock Shiny Session
+
 
 
 

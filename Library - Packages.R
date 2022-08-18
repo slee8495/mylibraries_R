@@ -155,6 +155,8 @@ library(UScensus2010)
 library(glmnet)   # for machine learning
 library(textrecipes)  
 library(themis)
+library(tidylo)
+library(stopwords)
 
 
 # Shiny Packages

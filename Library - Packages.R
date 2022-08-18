@@ -157,6 +157,7 @@ library(textrecipes)
 library(themis)
 library(tidylo)
 library(stopwords)
+library(xaringan)
 
 
 # Shiny Packages

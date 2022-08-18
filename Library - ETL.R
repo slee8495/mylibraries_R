@@ -583,7 +583,7 @@ data[!duplicated(data[,c("col1", "col2", "col3")]),] -> data
 
 
 # Remove front zero formula 
-dplyr::mutate(test = sub("^0+", "", a))
+dplyr::mutate(test = sub("^0+", "", test))
 
 
 # Replace inf 

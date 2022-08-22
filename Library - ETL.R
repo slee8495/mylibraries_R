@@ -576,7 +576,7 @@ air_quality_tbl %>%
 
 # Remove duplicated value ----
 # remove by 1 column
-data[-which(duplicated(data$col1)),] -> data
+data[!duplicated(data[,c("col1")]),] -> data
 
 # remove by multiple column
 data[!duplicated(data[,c("col1", "col2", "col3")]),] -> data

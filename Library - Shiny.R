@@ -1,3 +1,16 @@
+#########################################################################################################
+########################################### Shiny UI Editor #############################################
+#########################################################################################################
+
+# install.packages("remotes")
+# remotes::install_github("rstudio/shinyuieditor")
+library(shinyuieditor)
+shinyuieditor::launch_editor(app_loc = "new-app/")
+
+
+
+
+
 shinyApp(ui, server)
 
 #### How to create shiny begin ----

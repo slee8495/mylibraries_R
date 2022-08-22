@@ -182,5 +182,7 @@ library(xml2)
 library(zeallot)
 library(bslib)
 
-
+library(shinyuieditor)
+# install.packages("remotes")
+# remotes::install_github("rstudio/shinyuieditor")
 

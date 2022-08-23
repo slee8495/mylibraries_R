@@ -3,7 +3,7 @@
 #########################################################################################################
 
 # install.packages("remotes")
-# remotes::install_github("rstudio/shinyuieditor", force = TRUE)
+# remotes::install_github("rstudio/shinyuieditor")
 library(shinyuieditor)
 shinyuieditor::launch_editor(app_loc = "new-app/")
 

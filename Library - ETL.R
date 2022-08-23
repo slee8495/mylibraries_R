@@ -326,6 +326,14 @@ df %>%
 df %>% 
   dplyr::mutate(across(c(col1, col2, col3), as.factor))
 
+# Using across another example
+# across can choose multiple columns in group_by as well. 
+mpg %>%
+  dplyr::group_by(manufacturer, cyl) %>%
+  dplyr::summarise(across(.cols  = c(displ, cty:hwy),
+                          .fns   = list(mean, median))) %>%
+  dplyr::ungroup()
+
 
 
 # This is how to do cumsum by a certain criteria in a colmun using ddply

@@ -205,6 +205,10 @@ shipdate_changed %>%
 data %>% 
   dplyr::select(new_name = original_name)
 
+# dplyr::select_if 
+data %>%
+  dplyr::select_if(is.numeric)
+
 
 # Transform to Percentage ----
 Number_of_plt_count_lessthan1 / Total_number_of_Sku -> Percentage

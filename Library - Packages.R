@@ -160,6 +160,7 @@ library(stopwords)
 library(xaringan)
 library(mlbench)
 library(e1071)
+library(ranger)
 
 
 # Shiny Packages

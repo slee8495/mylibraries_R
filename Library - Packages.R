@@ -161,6 +161,7 @@ library(xaringan)
 library(mlbench)
 library(e1071)
 library(ranger)
+library(DataEditR)
 
 
 # Shiny Packages
@@ -188,4 +189,6 @@ library(bslib)
 library(shinyuieditor)
 # install.packages("remotes")
 # remotes::install_github("rstudio/shinyuieditor")
+
+
 

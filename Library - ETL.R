@@ -205,31 +205,31 @@ shipdate_changed %>%
 data %>% 
   dplyr::select(new_name = original_name)
 
-# dplyr::select_if 
-data %>%
-  dplyr::select_if(is.numeric)
 
-
-# Transform to Percentage ----
+# Transform to Percentage 
 Number_of_plt_count_lessthan1 / Total_number_of_Sku -> Percentage
 paste(round(100*Percentage, 2), "%") -> Percentage
 
-# how to format percentage ----
+# how to format percentage 
 sprintf("%1.2f%%", 100*data.set)
 
-# How co change column type sample ----
+# How co change column type sample 
 dataframe$column_name <- as.double(dataframe$column_name)
 
 dplyr::mutate(original_column_name = as.double(original_column_name))
 
-# Vlookup (most perfect one) ----
+# Vlookup (most perfect one) 
 merge(Main_data_frame, refefence_data_frame[, c("reference_col_name", "new_data_col_name # make sure to match the name")], by = "reference_col_name", all.x = TRUE) 
 
-# dplyr::relocate ----
+# Vlookup (Just like Excel, Bring the first one only)
+merge(main_data, reference_data[!duplicated(reference_data$column_that_you_want_to_delete_duplicated),], by = "ref_col")
+
+
+# dplyr::relocate 
 dplyr::relocate(col_name, .after = "col_name")
 
 
-# Separate data sample ----
+# Separate data sample 
 df <- data.frame(x = c('John, Mae', 'Maude, Lebowski', 'Mia, Amy', 'Andy, James'))
 df %>% 
   tidyr::separate(x, c('Name', 'Surname'))
@@ -329,14 +329,6 @@ df %>%
 # Using across for specific multiple columns
 df %>% 
   dplyr::mutate(across(c(col1, col2, col3), as.factor))
-
-# Using across another example
-# across can choose multiple columns in group_by as well. 
-mpg %>%
-  dplyr::group_by(manufacturer, cyl) %>%
-  dplyr::summarise(across(.cols  = c(displ, cty:hwy),
-                          .fns   = list(mean, median))) %>%
-  dplyr::ungroup()
 
 
 
@@ -674,10 +666,6 @@ business_days <- bizdays::bizdays(lubridate::floor_date(ymd(Sys.Date()),'month')
 data %>% 
   dplyr::mutate(col = as.integer(col),
                 col = as.Date(col, origin = "1899-12-30"))
-
-
-# How to match Excel Week formula and R Week formula (use below instead of using lubridate::week)
-dplyr::mutate(Week = as.integer(format(Date, "%U")) + 1) 
 
 
 #################################################### NLP ##############################################

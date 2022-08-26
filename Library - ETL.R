@@ -426,18 +426,27 @@ a %>%
   dplyr::arrange(desc(n))
 
 ################################################# Pivot ############################################
-# Pivot Using reshape2 (Pivot) ----
+# Pivot Using reshape2 (Pivot) 
 
 reshape2::dcast(pip, ProductNo + ProductName + Location ~ . , value.var = "Qty", sum) -> vector_1
 
 reshape2::dcast(pip, ProductNo + ProductName + Location ~ . , value.var = "Qty", length) -> vector_1
 
 
-# pivot_wider ----
+#  Using group_by and summaries (when you do for multiple values)
+mpg %>% 
+  dtplyr::lazy_dt() %>% 
+  dplyr::group_by(manufacturer, cyl) %>% 
+  dplyr::summarise(across(.cols = c(displ, cty:hwy),
+                          .fns = list(sum, mean),
+                          .names = "{.fn}_{.col}")) %>% 
+  dplyr::collect()
+
+# pivot_wider 
 data %>% 
   tidyr::pivot_wider(names_from = 'colname_you_want_to_wide', values_from = 'value_col')
 
-# pivot_longer ----
+# pivot_longer 
 data %>% 
   tidyr::pivot_longer(new_col_name_or_range, names_to = 'col_name', values_to = 'value_col_name')
 

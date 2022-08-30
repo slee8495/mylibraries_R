@@ -162,6 +162,7 @@ library(mlbench)
 library(e1071)
 library(ranger)
 library(DataEditR)
+library(datapasta)
 
 
 # Shiny Packages

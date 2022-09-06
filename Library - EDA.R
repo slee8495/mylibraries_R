@@ -822,6 +822,25 @@ ggplot2::ggplot(data = mtcars, mapping = aes(x = mpg, y = disp)) +
   ggplot2::geom_point() +
   ggplot2::geom_rug(position = "jitter", size = 0.2)
 
+
+# How to style dollar in the label and x or y axis
+# sample data
+load("C:/Users/sanle/OneDrive/R/Work/My Libraries/mylibraries/example_data/largest_companies_dt.rds")
+
+largest_companies_dt %>%
+  dplyr::mutate(V4 = readr::parse_number(V4),
+                V2 = as_factor(V2) %>% forcats::fct_rev()) %>%
+  data.frame() %>%
+  ggplot2::ggplot(mapping = aes(x = V4, y = V2)) +
+  ggplot2::geom_col(mapping = aes(fill = V4)) +
+  ggplot2::geom_label(mapping = aes(label = scales::dollar_format()(V4)), hjust = 1) +
+  ggplot2::theme_minimal() +
+  ggplot2::scale_x_continuous(labels = scales::dollar_format()) +
+  ggplot2::labs(title = "Revenue (Millions) for Largest Companies") +
+  ggplot2::theme(legend.position = 'none')
+
+
+
 ###################################################################################################################
 ######################################################### map series ##############################################
 ###################################################################################################################

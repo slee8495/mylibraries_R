@@ -496,7 +496,7 @@ data_sample %>%
 variable[is.na(variable)] <- 0
 
 
-########################################### Imputation ##############################################
+########################################### Imputation - deal with NA, n/a ##############################################
 
 # the importance of na.rm = TRUE
 # i.e
@@ -889,5 +889,36 @@ tm::stripWhitespace()
 
 # remove tab in the text
 mutate(complaint = gsub("\t", " ", complaint))
+
+
+
+
+######################################## Creating Dummy column to push or pull row to the next column ###############################
+# sample
+ref <- "first_row"  # or "last_row"
+
+data.frame(ref) -> dummy_1
+
+main_data.frame %>% 
+  dplyr::select(ref) -> dummy_2
+
+rbind(dummy_1, dummy_2) -> dummy_3    # if last_row: rbind(dummy_2, dummy_1) -> dummy_3
+rm(dummy_1, dummy_2)
+
+rm(ref)
+
+dummy_3 %>%
+  dplyr::slice(1:nrow(dummy) -1) %>%    # if last_row:  dplyr::slice(2:nrow(dummy_14)) 
+  dplyr::rename(dummy_ref = ref) %>% 
+  dplyr::mutate(dummy_index = dplyr::row_number())-> dummy_3
+
+main_data.frame %>% 
+  dplyr::arrange(index) %>%  # assuming you already have index column in your main_data.frame
+  dplyr::bind_cols(dummy_3) %>% 
+  dplyr::relocate(dummy_ref, .after = ref) -> main_data.frame
+
+
+
+#######################################################################################################################################
 
 

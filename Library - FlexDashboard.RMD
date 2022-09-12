@@ -1,0 +1,48 @@
+---
+title: "Library - Flexdashboard - sample codes"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(plotly)
+library(shiny)
+library(DT)
+
+```
+
+
+Data Table
+=====================================================================
+
+Column {data-width=1000}
+--------------------------------------------------------------------
+
+```{r}
+
+DT::datatable(iris, 
+              extensions = "Buttons",
+              options = list(pageLength = 100, 
+                             scrollY= TRUE,
+                             dom = "Blfrtip",
+                             buttons = c("copy", "csv", "excel", "pdf")))
+
+
+```
+
+
+Chart 1 (or Page 1)
+======
+
+### Chart A
+
+
+```{r}
+
+```
+

@@ -833,9 +833,9 @@ largest_companies_dt %>%
   data.frame() %>%
   ggplot2::ggplot(mapping = aes(x = V4, y = V2)) +
   ggplot2::geom_col(mapping = aes(fill = V4)) +
-  ggplot2::geom_label(mapping = aes(label = scales::dollar_format()(V4)), hjust = 1) +
+  ggplot2::geom_label(mapping = aes(label = scales::dollar_format()(V4)), hjust = 1) +     # Here, dollar_format
   ggplot2::theme_minimal() +
-  ggplot2::scale_x_continuous(labels = scales::dollar_format()) +
+  ggplot2::scale_x_continuous(labels = scales::dollar_format()) +   # Here again, dollar_format
   ggplot2::labs(title = "Revenue (Millions) for Largest Companies") +
   ggplot2::theme(legend.position = 'none')
 

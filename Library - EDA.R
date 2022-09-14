@@ -705,11 +705,12 @@ ggplot2::ggplot(data = gapminder_tidy, mapping = aes(y = reorder(country, y1952)
                        color = "grey",
                        colour_x = "blue",
                        colour_xend = "red") +
-  ggplot2::labs(title = "Change in Life Expectancy",
+  ggplot2::labs(title = "Change in Life Expectancy",  
                 subtitle = "1952 to 2007",
                 x = "Life Expectancy (years)", 
                 y = "Person") +
-  ggthemes::theme_igray()
+  ggthemes::theme_igray() 
+  
 
 
 # Waterfall plot using waterfalls
@@ -1219,6 +1220,14 @@ g +
 g + 
   ggplot2::coord_equal()  # for square
 
+
+
+# How to enter new line in the title of the graph
+ggplot2::labs(title = "title 1st line\nof 2nd line")  # don't forget to add \nof
+
+# How to put the title inside of the graph
+ggplot2::labs(title = "This is title") +
+  ggplot2::theme(plot.title = element_text(vjust = -2.5))
 
 
 ###################################################################################################################

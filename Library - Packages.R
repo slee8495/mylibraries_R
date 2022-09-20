@@ -163,6 +163,7 @@ library(e1071)
 library(ranger)
 library(DataEditR)
 library(datapasta)
+library(ggridges)   # ggplot2 graphs combine
 
 
 # Shiny Packages

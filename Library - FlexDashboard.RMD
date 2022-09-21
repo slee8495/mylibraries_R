@@ -2,7 +2,7 @@
 title: "Library - Flexdashboard - sample codes"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: columns
+    orientation: rows
     vertical_layout: fill
 runtime: shiny
 ---
@@ -13,6 +13,13 @@ library(tidyverse)
 library(plotly)
 library(shiny)
 library(DT)
+
+
+dat<-read_csv(url("https://www.dropbox.com/s/4ebgnkdhhxo5rac/cel_volden_wiseman%20_coursera.csv?raw=1"))
+
+dat$Party<-recode(dat$dem,`1`="Democrat",`0`="Republican")
+dat
+
 
 ```
 
@@ -36,13 +43,104 @@ DT::datatable(iris,
 ```
 
 
-Chart 1 (or Page 1)
+Page 1
 ======
 
 ### Chart A
 
 
 ```{r}
+dat %>% 
+  drop_na() %>% 
+  filter(year>1979) %>% 
+  group_by(year,Party) %>% 
+  summarise(passed=sum(all_pass)) -> a
+
+ggplot2::ggplot(data = a, mapping = aes(x = year, y = passed, fill = Party)) +
+  ggplot2::geom_area() +
+  ggplot2::scale_fill_manual(values = c("blue", "red")) +
+  ggplot2::labs(x = "Year",
+                y = "All Bills Passed",
+                title = "Number of Bills Passed Since 1980")
 
 ```
 
+Page 2
+======
+
+### Chart B
+
+```{r}
+
+dat%>%
+  drop_na()%>%
+  filter(congress==110) -> b
+
+ggplot2::ggplot(data = b, mapping = aes(x = votepct, y = all_pass, color = Party)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth() +
+  ggplot2::scale_color_manual(values = c("blue", "red")) +
+  ggplot2::labs(title = "Passage and Vote Pct., 110th Congress",
+                x = "Vote Pct.",
+                y = "All Pass") -> p_b
+
+
+ggplotly(p_b)
+
+
+```
+
+
+
+### Chart C
+
+```{r}
+dat%>%
+  drop_na()%>%
+  filter(congress==110) -> c
+
+
+ggplot2::ggplot(data = c, mapping = aes(x = dwnom1, y = all_pass, color = Party)) +
+  ggplot2::geom_point() +
+  ggplot2::scale_color_manual(values = c("blue", "red")) +
+  ggplot2::geom_smooth(method = "lm") +
+  ggplot2::labs(title = "Passage and Ideology, 110th Congress",
+                x = "DW Nominate.",
+                y = "All Pass") -> p_c
+
+
+ggplotly(p_c)
+
+```
+
+
+Page 3
+======
+
+Input{.sidebar}
+----------------------------------------------------------------
+### User Input
+
+```{r}
+dat %>% 
+  group_by(st_name) %>% 
+  filter(congress==110) %>%
+  summarise(passed=sum(all_pass)) -> d
+
+selectInput(inputId = "select", label = "State", choices = d$st_name, multiple = TRUE, selected = d$st_name)
+```
+
+Column
+----------------------------------------------------------------
+
+### Chart D
+
+```{r}
+renderPlotly(ggplot2::ggplot(filter(d, st_name == input$select), aes(x = passed, y = st_name)) +
+  ggplot2::geom_col() +
+  ggplot2::labs(title = "Total Bills Passed By State Delegations, 110th Congress",
+                x = "Total Bills Passed Per State",
+                y = "State Name"))
+
+
+```

@@ -549,6 +549,9 @@ original_data_frame[, -(ncol(original_data_frame)-1)] -> original_data_Frame
 # or simply
 original_data_frame$col[is.na(original_data_frame$col)] <- 0
 
+# entire data NA -> 0
+original_data_frame[is.na(original_data_frame)] <- 0
+
 # vis_dat() how to visualize your missing data by column
 data.set %>% visdat::vis_dat()  # don't forget to have your table as.tibble()
 

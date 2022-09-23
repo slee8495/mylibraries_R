@@ -842,6 +842,24 @@ largest_companies_dt %>%
 
 
 
+# Ridgeline Plot
+# sample data
+load("C:/Users/sanle/OneDrive/R/Work/My Libraries/mylibraries/example_data/txhousing_tbl.rds")
+
+txhousing_tbl %>%
+  tidyr::drop_na() %>%
+  dplyr::mutate(city = factor(city) %>% forcats::fct_reorder(median) %>% forcats::fct_rev()) %>%
+  dplyr::filter(as.numeric(city) %in% (1:10)) %>%
+  
+  ggplot2::ggplot(mapping = aes(x = median, y = fct_rev(city))) +
+  ggridges::geom_density_ridges(color = "#18BC9C",
+                               fill  = "gray10",
+                               alpha = 0.75,
+                               size  = 1) +
+  ggplot2::scale_x_continuous(labels = scales::dollar_format()) +
+  ggplot2::theme_minimal() +
+  ggplot2::labs(x = "Median Home Price", y = "", title = "Top 10 Cities by Median Home Price")
+
 ###################################################################################################################
 ######################################################### map series ##############################################
 ###################################################################################################################

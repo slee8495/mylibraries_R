@@ -895,7 +895,7 @@ mutate(complaint = gsub("\t", " ", complaint))
 
 
 
-
+s
 ######################################## Creating Dummy column to push or pull row to the next column ###############################
 # sample
 ref <- "first_row"  # or "last_row"

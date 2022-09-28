@@ -425,6 +425,12 @@ a %>%
   dplyr::count() %>% 
   dplyr::arrange(desc(n))
 
+
+# Same Column different row calculation or formula
+data %>% 
+  dplyr::mutate(new_col = old_col + lead(old_col, default = 0))
+
+
 ################################################# Pivot ############################################
 # Pivot Using reshape2 (Pivot) 
 

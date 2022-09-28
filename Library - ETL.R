@@ -428,7 +428,11 @@ a %>%
 
 # Same Column different row calculation or formula
 data %>% 
-  dplyr::mutate(new_col = old_col + lead(old_col, default = 0))
+  dplyr::mutate(new_col = old_col + lead(old_col, default = 0))  #lead is the next row
+
+
+data %>% 
+  dplyr::mutate(new_col = old_col + lag(old_col, default = 0))  #lag is the previouse row
 
 
 ################################################# Pivot ############################################

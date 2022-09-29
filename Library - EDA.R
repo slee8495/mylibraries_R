@@ -848,11 +848,11 @@ load("C:/Users/sanle/OneDrive/R/Work/My Libraries/mylibraries/example_data/txhou
 
 txhousing_tbl %>%
   tidyr::drop_na() %>%
-  dplyr::mutate(city = factor(city) %>% forcats::fct_reorder(median) %>% forcats::fct_rev()) %>%
-  dplyr::filter(as.numeric(city) %in% (1:10)) %>%
+  dplyr::mutate(city = factor(city) %>% forcats::fct_reorder(median) %>% forcats::fct_rev()) %>%  # how to reorder your plot by the value
+  dplyr::filter(as.numeric(city) %in% (1:10)) %>%   # how many county do you want? like top 10 (how to do top 10)
   
   ggplot2::ggplot(mapping = aes(x = median, y = fct_rev(city))) +
-  ggridges::geom_density_ridges(color = "#18BC9C",
+  ggridges::geom_density_ridges(color = "#18BC9C",        #  this plot is really good to compare the value
                                fill  = "gray10",
                                alpha = 0.75,
                                size  = 1) +

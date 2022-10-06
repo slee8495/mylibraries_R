@@ -300,6 +300,14 @@ data1 %>%
   dplyr::left_join(data2, by = c("col1", "col2"))
 
 
+# different name left_join
+data.A %>%
+  left_join(data.B, by = c("data.A's col name" = "data.B's col name"))
+
+
+
+
+
 # How to Save Files 
 # How to write in rds file
 write_rds(data.frame, 'name.rds', compress = 'gz')
@@ -433,6 +441,7 @@ data %>%
 
 data %>% 
   dplyr::mutate(new_col = old_col + lag(old_col, default = 0))  #lag is the previouse row
+
 
 
 ################################################# Pivot ############################################

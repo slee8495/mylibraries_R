@@ -599,6 +599,11 @@ g +
 g +
   ggplot2::theme(legend.position = "none")  # or "bottom", "right", "left", "right", "top" 
 
+# control your legend color, background color
+g +
+  ggplot2::theme(legend.background = element_blank()) +
+  ggplot2::theme(legend.key = element_blank())
+
 
 # removing x axis or y axis using labs
 g +

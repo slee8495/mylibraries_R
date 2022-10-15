@@ -1492,4 +1492,24 @@ ggplot2::ggplot(data = cel, mapping = aes(x = seniority,
 )
 
 
+################### PatchWork ################# how to combind figures into one page
+
+load("gg_tx_map.rds")
+load("gg_tx_timeseries.rds")
+load("gg_tx_ridge.rds")
+
+library(patchwork)
+
+gg_tx_map + (gg_tx_timeseries / gg_tx_ridge) +
+  plot_layout(widths = c(3,2), tag_level = "new") +
+  plot_annotation(
+    title      = "Texas Real-Estate Statistics",
+    subtitle   = "The untold secrets of prime-real estate in the Lonestar State.\n",
+    tag_levels = "A",
+    tag_prefix = "Fig. ",
+    tag_suffix = ":"
+  ) &
+  theme(plot.tag.position = c(0, 1),
+        plot.tag = element_text(size = 8, hjust = 0, vjust = 0))
+
 

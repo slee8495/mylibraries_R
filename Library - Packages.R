@@ -164,6 +164,7 @@ library(ranger)
 library(DataEditR)
 library(datapasta)
 library(ggridges)   # ggplot2 graphs combine
+library(ggside)
 
 
 # Shiny Packages

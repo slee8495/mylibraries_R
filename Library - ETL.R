@@ -465,6 +465,9 @@ mpg %>%
 data %>% 
   tidyr::pivot_wider(names_from = 'colname_you_want_to_wide', values_from = 'value_col')
 
+# using pivot_wider multiple row (example below)
+pivot_wider(df, c(col1, col2), names_from = col3, values_from = col3)
+
 # pivot_longer 
 data %>% 
   tidyr::pivot_longer(new_col_name_or_range, names_to = 'col_name', values_to = 'value_col_name')

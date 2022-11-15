@@ -316,6 +316,10 @@ write_rds(data.frame, 'name.rds', compress = 'gz')
 save(data.frame, file = "name.RData")
 save(data.frame, file = "name.rds")
 
+# for csv file converting to RDS and Read
+saveRDS(data.frame, file = "name.rds")
+readRDS("name.rds")
+
 # How to load 
 load("name.rds")
 

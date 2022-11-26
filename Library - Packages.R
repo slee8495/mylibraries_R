@@ -165,6 +165,7 @@ library(DataEditR)
 library(datapasta)
 library(ggridges)   # ggplot2 graphs combine
 library(ggside)
+library(wordcloud2)
 
 
 # Shiny Packages

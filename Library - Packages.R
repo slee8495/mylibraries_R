@@ -166,7 +166,9 @@ library(datapasta)
 library(ggridges)   # ggplot2 graphs combine
 library(ggside)
 library(wordcloud2)
-
+library(rjson)
+library(jsonlite)
+library(sparklyr)
 
 # Shiny Packages
 library(shiny)
@@ -189,6 +191,7 @@ library(waiter)
 library(xml2)
 library(zeallot)
 library(bslib)
+
 
 library(shinyuieditor)
 # install.packages("remotes")

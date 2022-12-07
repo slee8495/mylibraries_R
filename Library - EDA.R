@@ -1258,7 +1258,7 @@ g +
 
 
 # How to enter new line in the title of the graph
-ggplot2::labs(title = "title 1st line\nof 2nd line")  # don't forget to add \nof
+ggplot2::labs(title = "title 1st line\nof 2nd line")  # don't forget to add \n
 
 # How to put the title inside of the graph
 ggplot2::labs(title = "This is title") +

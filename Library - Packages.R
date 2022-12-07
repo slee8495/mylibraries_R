@@ -169,6 +169,8 @@ library(wordcloud2)
 library(rjson)
 library(jsonlite)
 library(sparklyr)
+library(arrow)
+library(sergeant)
 
 # Shiny Packages
 library(shiny)

@@ -877,6 +877,38 @@ p + ggplot2::theme(legend.title = element_text(face = "italic",
                                                color = "red",
                                                size = 14))
 
+
+# ggside sample
+load("nobel.rds")
+
+nobel %>% 
+  ggplot2::ggplot(mapping = aes(x = year, y = age)) +
+  ggplot2::geom_point(mapping = aes(color = gender, shape = category),
+                      size = 2,
+                      alpha = 0.5) +
+  ggplot2::annotate("rect", xmin = 2012, xmax = 2020, ymin = 20, ymax = 30, alpha = 0.2, fill = "red") +
+  ggplot2::annotate(geom = "curve", x = 2000, xend = 2010, y = 15, yend = 20, size = 1.5,
+                    curvature = 0.2, arrow = arrow(length = unit(2, "mm"))) +
+  ggplot2::annotate(geom = "text", x = 1990, y = 15, label = "First female 20's Nobel Prize in peace category", color = "red") +
+  ggplot2::geom_rug(position = "jitter", size = 0.2, alpha = 0.3) +
+  ggside::geom_xsidedensity(mapping = aes(y = ggplot2::after_stat(density), fill = category),
+                            alpha = 0.5,
+                            position = "stack") +
+  ggside::geom_ysidefreqpoly(color = "red") +
+  ggside::geom_ysidehistogram(fill = "blue",
+                              alpha = 0.5) +
+  tidyquant::scale_color_tq() +
+  tidyquant::scale_fill_tq() +
+  tidyquant::theme_tq() +
+  ggplot2::theme(ggside.panel.scale.x = 0.4,
+                 ggside.panel.scale.y = 0.4) +
+  ggplot2::scale_color_manual(values = c("red","blue")) +
+  ggplot2::labs(title = "Main Plot: Correlation between the Year and Age",
+                subtitle = "X - Side Plot: Density Plot by Category\nY - Side Plot: Histogram by Age of Nobel Winners",
+                x = "Year",
+                y = "Age") +
+  ggplot2::theme(plot.title = element_text(size = 12))
+
 ###################################################################################################################
 ######################################################### map series ##############################################
 ###################################################################################################################

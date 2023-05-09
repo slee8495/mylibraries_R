@@ -73,6 +73,11 @@ path %>%
                 path      = path,
                 col_names = TRUE) -> OneSheet
 
+# Reading multiple Files
+
+
+
+
 ################################################## Column data type control ########################################
 # very good way to see columns ----
 skimr::skim(data)

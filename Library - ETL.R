@@ -73,7 +73,6 @@ path %>%
                 path      = path,
                 col_names = TRUE) -> OneSheet
 
-# Reading multiple Files
 
 
 

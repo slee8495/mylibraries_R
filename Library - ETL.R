@@ -116,6 +116,15 @@ data %>%
 data$col <- as.double(data$col)
 
 
+# How to set column names according to the attributes pulled by dplyr::pull()
+df1 %>% 
+  dplyr::filter(is_header == TRUE) %>%   # example 
+  dplyr::pull(text) -> df_1
+
+df %>% 
+  purrr::set_names(df_1)
+
+
 
 ############################################## Simple Arithmatic ##############################################
 
@@ -338,6 +347,11 @@ data %>%
 # How to use across to change the value by col type all at once 
 df %>% 
   dplyr::mutate(across(where(is.character), stringr::str_to_upper)) 
+
+# How to use across to convert any cols with number only to number format
+df %>% 
+  dplyr::mutate(across(.cols = -1, .fns = parse_number)) 
+
 
 # easy explanation: take all the ch cols across all of the columns in the data, do the next command 
 # next command: in this case, stringr::str_to_upper

@@ -125,6 +125,10 @@ df %>%
   purrr::set_names(df_1)
 
 
+# How to use across to convert any cols with number only to number format
+df %>% 
+  dplyr::mutate(across(.cols = -1, .fns = parse_number)) 
+
 
 ############################################## Simple Arithmatic ##############################################
 

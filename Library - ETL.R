@@ -31,7 +31,7 @@ readxl::read_excel(path      = "C:/Users/stanl/OneDrive/Desktop/New folder/.xlsx
                    sheet     = 1,
                    col_names = TRUE) -> 
   
-  writexl::write_xlsx(Total_Picking,
+writexl::write_xlsx(Total_Picking,
                       path = "C:/Users/stanl/OneDrive/Desktop/New folder/.xlsx")
 
 # How to read xlsb file

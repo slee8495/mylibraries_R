@@ -11,6 +11,10 @@ file.rename("..'.xlsx")
 # create folder in the dir
 dir.create("example_data")
 
+# file move between folders (i.e)
+file.rename(from="C:/Users/slee/po.xlsx",
+            to="C:/Users/slee/DNRR Automation/po.xlsx")
+
 ############################################ Read & Write files ############################################
 # How to read large file 
 data.table::fread("/file.xlsx")

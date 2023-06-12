@@ -911,8 +911,7 @@ nobel %>%
 
 
 # How to use ggtext::geom_richtext
-load("C:/Users/sanle/OneDrive/R/Work/My Libraries/mylibraries/example_data/business_science_doc_to_R.rds")
-
+load("C:/Users/slee/OneDrive - Ventura Foods/Stan/R Codes/mylibraries/mylibraries/example_data/business_science_doc_to_R.rds")
 
 
 ###################################################################################################################

@@ -78,7 +78,9 @@ path %>%
                 col_names = TRUE) -> OneSheet
 
 
-
+# Convert csv file to xlsx file  #example path
+rio::convert("C:/Users/slee/OneDrive - Ventura Foods/Ventura Work/SCE/Project/FY 23/BoM version 2/Weekly Run/6.14.2023/EF820180.csv",
+             "C:/Users/slee/OneDrive - Ventura Foods/Ventura Work/SCE/Project/FY 23/BoM version 2/Weekly Run/6.14.2023/as400_86.xlsx")
 
 
 ################################################## Column data type control ########################################

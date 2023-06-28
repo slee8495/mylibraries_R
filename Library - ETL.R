@@ -580,7 +580,7 @@ temp[is.na(temp)] <- "new_data or 0"
 a[, "col_name"] <- temp
 
 # This is my way to deal with NA 
-data %<>% 
+data %>% 
   dplyr::mutate(col = sprintf("%.2f", col)) %>%   # Here it changes to #,##0.00 format in character
   dplyr::mutate(col = gsub("NA", "0", col)) %>%   # Here change NA to something else.. 
   dplyr::mutate(col = as.integer(col))        # Here, it could be integer or double etc. 

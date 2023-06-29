@@ -913,6 +913,20 @@ nobel %>%
 # How to use ggtext::geom_richtext
 load("C:/Users/slee/OneDrive - Ventura Foods/Stan/R Codes/mylibraries/mylibraries/example_data/business_science_doc_to_R.rds")
 
+business_science_doc_to_R %>%
+  ggplot2::ggplot(mapping = aes(x = students, y = lectures_completed)) +
+  ggplot2::geom_point(mapping = aes(size = activity_ratio)) +
+  ggplot2::geom_smooth(method = "loess") +
+  ggtext::geom_richtext(aes(label = str_glue("___Course: {course}___<br>Ratio: {round(activity_ratio)}")),
+                        vjust = "inward", 
+                        hjust = "inward", 
+                        size = 3.5) +  # How to put label pulling from the data table
+  ggplot2::labs(title = "Lessons Completed Vs Students", 
+                x = "No. of Students", 
+                y = "No. of Lessons Completed") +
+  ggplot2::scale_y_continuous(label = scales::comma) +  # How to put comma in x or y axis in ggplot graph
+  ggplot2::expand_limits(y = 0) +
+  ggplot2::theme_minimal() 
 
 ###################################################################################################################
 ######################################################### map series ##############################################

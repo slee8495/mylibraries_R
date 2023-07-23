@@ -236,6 +236,9 @@ paste(round(100*Percentage, 2), "%") -> Percentage
 # how to format percentage 
 sprintf("%1.2f%%", 100*col)
 
+# how to format dollar or currency
+sprintf("$%.2f", col)
+
 # How co change column type sample 
 dataframe$column_name <- as.double(dataframe$column_name)
 

@@ -686,7 +686,8 @@ sample %>%
 sample %>% 
   dplyr::mutate(date = lubridate::floor_date(date, unit = "month") -1)
 
-
+# sample month abb, abbreviation 
+lubridate::month(col, label = TRUE)
 
 Year 
 # %Y - 4 digits

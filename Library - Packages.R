@@ -167,6 +167,7 @@ library(datapasta)
 library(ggridges)   # ggplot2 graphs combine
 library(gghalves)
 library(grafify)
+library(ggside)
 
 
 # Shiny Packages

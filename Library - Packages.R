@@ -8,6 +8,7 @@ library(skimr)
 library(janitor)
 library(lubridate)
 library(rio)
+library(scales)
 
 library(tidymodels)
 library(plyr)
